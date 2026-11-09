@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chkela — Study smarter. Not harder.</title>
+  <meta name="description" content="Stop grinding random notes for hours. Chkela shows what actually moves your matric score — then helps you practice it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #04050c;
+      --bg-surface: #0b0e1d;
+      --bg-glass: rgba(15, 19, 38, 0.72);
+      --text-white: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.68);
+      --text-muted: rgba(255, 255, 255, 0.45);
+      --indigo-primary: #5b6cf9;
+      --indigo-glow: #4f46e5;
+      --indigo-soft: #818cf8;
+      --emerald-focus: #10b981;
+      --gold-gift: #d97706;
+      --gold-light: #fbbf24;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-bright: rgba(255, 255, 255, 0.16);
+      --font-display: 'Unbounded', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-deep);
+      color: var(--text-white);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-white);
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       1. STICKY TOP NAVBAR (Exact match to video_1.mp4 00:00 - 01:54)
+       ========================================================================== */
+    .site-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(180deg, rgba(4, 5, 12, 0.88) 0%, rgba(4, 5, 12, 0.45) 75%, transparent 100%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .brand-logo-text {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.38rem;
+      letter-spacing: -0.03em;
+      color: var(--text-white);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: baseline;
+      user-select: none;
+    }
+
+    .brand-logo-text .brand-dot {
+      color: var(--text-white);
+      font-size: 1.55rem;
+      line-height: 0;
+      margin-left: 1px;
+    }
+
+    .nav-right-cluster {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-pill-group {
+      display: flex;
+      align-items: center;
+      background: rgba(18, 22, 44, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      padding: 4px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .nav-pill-link {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.78);
+      text-decoration: none;
+      padding: 8px 20px;
+      border-radius: 999px;
+      transition: all 0.22s ease;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+
+    .nav-pill-link:hover {
+      color: var(--text-white);
+    }
+
+    .nav-pill-link.active {
+      background: #ffffff;
+      color: #060814;
+      font-weight: 700;
+      box-shadow: 0 2px 12px rgba(255, 255, 255, 0.25);
+    }
+
+    .nav-login-btn {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-white);
+      background: rgba(67, 79, 175, 0.28);
+      border: 1px solid rgba(129, 140, 248, 0.35);
+      padding: 10px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-login-btn:hover {
+      background: rgba(91, 108, 249, 0.45);
+      border-color: rgba(165, 180, 252, 0.65);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       2. HERO SECTION WITH 3D ORBITAL RINGS CANVAS (00:00 - 00:24)
+       ========================================================================== */
+    .hero-wrapper {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 70px;
+      overflow: hidden;
+    }
+
+    #orbitalCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-ambient-glow {
+      position: absolute;
+      width: 780px;
+      height: 780px;
+      left: 50%;
+      top: 46%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.26) 0%, rgba(55, 48, 163, 0.12) 42%, transparent 70%);
+      filter: blur(60px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1220px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    /* Left Column Copy */
+    .hero-left {
+      max-width: 590px;
+    }
+
+    .hero-display-brand {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(3.6rem, 6.6vw, 5.45rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      margin-bottom: 18px;
+      text-shadow: 0 0 40px rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-display-brand .big-dot {
+      display: inline-block;
+      color: #ffffff;
+      font-size: 1.08em;
+      margin-left: 2px;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: clamp(2rem, 3.3vw, 2.85rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 22px;
+    }
+
+    .hero-description {
+      font-size: 1.08rem;
+      line-height: 1.62;
+      color: var(--text-secondary);
+      max-width: 485px;
+      margin-bottom: 32px;
+      font-weight: 400;
+    }
+
+    /* Store Pill Buttons */
+    .store-buttons-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .store-white-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #ffffff;
+      color: #070913;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.94rem;
+      padding: 14px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .store-white-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(255, 255, 255, 0.22);
+    }
+
+    .store-white-pill svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Claim Your Gift Button (Exact match to video_1.mp4) */
+    .claim-gift-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(135deg, rgba(28, 25, 23, 0.85) 0%, rgba(17, 19, 34, 0.9) 100%);
+      border: 1px solid rgba(217, 119, 6, 0.38);
+      border-radius: 16px;
+      padding: 11px 18px 11px 12px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(251, 191, 36, 0.12);
+      margin-bottom: 16px;
+      text-align: left;
+      color: var(--text-white);
+    }
+
+    .claim-gift-pill:hover {
+      border-color: rgba(251, 191, 36, 0.72);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 34px rgba(217, 119, 6, 0.18);
+    }
+
+    .cg-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(217, 119, 6, 0.18);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      color: var(--gold-light);
+      font-weight: 800;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+
+    .cg-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.28;
+    }
+
+    .cg-text strong {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .cg-text span {
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.56);
+    }
+
+    .cg-arrow {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 1rem;
+      margin-left: 8px;
+      transition: transform 0.2s ease;
+    }
+
+    .claim-gift-pill:hover .cg-arrow {
+      transform: translateX(3px);
+      color: var(--gold-light);
+    }
+
+    .hero-micro-caption {
+      display: block;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.42);
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
+       3. RIGHT COLUMN: IPHONE MOCKUP (Exact match to 00:10 - 00:16 zoom-in)
+       ========================================================================== */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .iphone-shell {
+      width: 356px;
+      background: linear-gradient(160deg, #1b213f 0%, #0b0e1e 50%, #141830 100%);
+      border-radius: 48px;
+      padding: 11px;
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.78),
+        0 0 65px rgba(79, 70, 229, 0.26),
+        inset 0 1px 2px rgba(255, 255, 255, 0.22);
+      position: relative;
+    }
+
+    .iphone-screen {
+      background: linear-gradient(180deg, #0d1021 0%, #080a15 100%);
+      border-radius: 38px;
+      padding: 14px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      min-height: 615px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Top Status Bar & Dynamic Island */
+    .iphone-statusbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2px 6px 14px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .dynamic-island {
+      width: 86px;
+      height: 22px;
+      background: #000000;
+      border-radius: 999px;
+    }
+
+    .status-Utility-icons {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.68rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* Phone App Header */
+    .phone-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-top: 4px;
+    }
+
+    .phone-brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .phone-app-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone-app-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .phone-brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-brand-titles strong {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+    }
+
+    .phone-brand-titles span {
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.52);
+    }
+
+    .focus-pill-badge {
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.42);
+      color: #34d399;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 5px 11px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Subject Weakness Chips Row (Weak: Physics | Math | Biology) */
+    .phone-subject-chips {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .subject-chip {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      user-select: none;
+    }
+
+    .subject-chip.weak-active {
+      background: rgba(91, 108, 249, 0.22);
+      border: 1px solid rgba(129, 140, 248, 0.52);
+      color: #c7d2fe;
+    }
+
+    .subject-chip.muted-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.58);
+    }
+
+    .subject-chip.muted-chip:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    /* Phone Chat Bubbles Stream */
+    .phone-chat-area {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .phone-bubble {
+      font-size: 0.84rem;
+      line-height: 1.48;
+      padding: 13px 16px;
+      border-radius: 18px;
+      max-width: 90%;
+      animation: fadeBubble 0.35s ease forwards;
+    }
+
+    @keyframes fadeBubble {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .phone-bubble.tutor-left {
+      background: rgba(26, 31, 56, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.92);
+      align-self: flex-start;
+      border-top-left-radius: 6px;
+    }
+
+    .phone-bubble.student-right {
+      background: linear-gradient(135deg, #5b6cf9 0%, #4f46e5 100%);
+      color: #ffffff;
+      font-weight: 600;
+      align-self: flex-end;
+      border-bottom-right-radius: 6px;
+      box-shadow: 0 6px 20px rgba(91, 108, 249, 0.35);
+      cursor: pointer;
+    }
+
+    /* Bottom Input Bar inside Phone */
+    .phone-input-bar {
+      margin-top: auto;
+      background: rgba(22, 26, 48, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      padding: 8px 8px 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+
+    .phone-input-bar:hover {
+      border-color: rgba(129, 140, 248, 0.5);
+    }
+
+    .phone-input-placeholder {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.42);
+    }
+
+    .phone-send-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #5b6cf9;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       4. SCHOOLS MARQUEE SECTION (00:24 - 00:54)
+       ========================================================================== */
+    .schools-marquee-section {
+      padding: 46px 0 64px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .schools-eyebrow {
+      text-align: center;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.46);
+      margin-bottom: 28px;
+    }
+
+    .marquee-viewport {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      padding: 12px 0;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .marquee-rail {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      width: max-content;
+      animation: chkelaMarqueeScroll 38s linear infinite;
+    }
+
+    .marquee-rail:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes chkelaMarqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .school-glass-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(15, 19, 36, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      padding: 14px 22px 14px 16px;
+      min-width: 248px;
+      transition: all 0.28s ease;
+      cursor: default;
+      backdrop-filter: blur(12px);
+    }
+
+    .school-glass-card:hover {
+      transform: translateY(-3px) scale(1.02);
+      border-color: var(--card-glow, rgba(129, 140, 248, 0.65));
+      box-shadow: 0 8px 30px var(--card-shadow, rgba(91, 108, 249, 0.22));
+    }
+
+    .school-initials-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+      background: var(--badge-bg, rgba(91, 108, 249, 0.18));
+      border: 1px solid var(--badge-border, rgba(129, 140, 248, 0.4));
+      color: var(--badge-text, #a5b4fc);
+    }
+
+    .school-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.28;
+    }
+
+    .school-meta strong {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .school-meta span {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.5);
+      white-space: nowrap;
+    }
+
+    /* ==========================================================================
+       5. "THE SMARTER WAY" FEATURES SECTION (00:56 - 01:28)
+       ========================================================================== */
+    .smarter-section {
+      padding: 84px 48px 96px;
+      max-width: 1220px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .smarter-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #818cf8;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .smarter-display-heading {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.45rem, 4.7vw, 3.85rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+
+    .smarter-subcopy {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin-bottom: 56px;
+    }
+
+    .features-two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 64px;
+      row-gap: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .feature-row-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 34px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .feature-index-num {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.35);
+      padding-top: 4px;
+      min-width: 24px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .feature-row-body h3 {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-row-body p {
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       6. GIANT "90%" STATISTIC SECTION (01:28 - 01:38)
+       ========================================================================== */
+    .stat-ninety-section {
+      padding: 72px 48px 90px;
+      max-width: 1220px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .giant-ninety-number {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(5.5rem, 13.5vw, 10.8rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, #c7d2fe 0%, #818cf8 52%, #4338ca 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      margin-bottom: 14px;
+      filter: drop-shadow(0 16px 45px rgba(79, 70, 229, 0.28));
+    }
+
+    .stat-ninety-title {
+      font-family: var(--font-sans);
+      font-weight: 800;
+      font-size: clamp(1.65rem, 2.8vw, 2.25rem);
+      line-height: 1.18;
+      color: #ffffff;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-ninety-sub {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 480px;
+    }
+
+    /* ==========================================================================
+       7. "WORK SMART. PASS STRONG." BOTTOM CTA SECTION (01:40 - 01:54)
+       ========================================================================== */
+    .bottom-cta-section {
+      padding: 70px 48px 96px;
+      max-width: 1220px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .bottom-cta-glow {
+      position: absolute;
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 540px;
+      height: 540px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.22) 0%, rgba(59, 130, 246, 0.08) 48%, transparent 72%);
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .bottom-cta-heading {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.5rem, 4.8vw, 3.9rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .bottom-cta-sub {
+      font-size: 1.04rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 470px;
+      margin-bottom: 30px;
+    }
+
+    /* ==========================================================================
+       8. EXACT SITE FOOTER (01:50 - 01:54)
+       ========================================================================== */
+    .chkela-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 44px 48px 52px;
+      max-width: 1220px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-left-col .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: #ffffff;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .footer-left-col p {
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.45);
+      max-width: 240px;
+    }
+
+    .footer-right-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .footer-right-links a {
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.58);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-right-links a:hover {
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       9. MODALS FOR LOGIN, GIFT CLAIM, ABOUT & NATURAL SCIENCES ENGINE
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(3, 4, 10, 0.82);
+      backdrop-filter: blur(14px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-glass-box {
+      background: #0d1124;
+      border: 1px solid rgba(129, 140, 248, 0.28);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 28px 75px rgba(0, 0, 0, 0.85);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-glass-box.wide-modal {
+      max-width: 860px;
+    }
+
+    .modal-close-x {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      margin-bottom: 8px;
+    }
+
+    .modal-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 22px;
+    }
+
+    .field-block {
+      margin-bottom: 16px;
+    }
+
+    .field-block label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 6px;
+    }
+
+    .field-block input,
+    .field-block select {
+      width: 100%;
+      padding: 13px 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #060813;
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 0.94rem;
+    }
+
+    .primary-action-btn {
+      width: 100%;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #5b6cf9 0%, #4f46e5 100%);
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    /* Natural Sciences Drill Cards inside Modal */
+    .drill-option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 13px 16px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: #ffffff;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .drill-option-btn:hover {
+      border-color: #818cf8;
+      background: rgba(91, 108, 249, 0.14);
+    }
+
+    .drill-option-btn.correct {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.22);
+    }
+
+    .drill-option-btn.wrong {
+      border-color: #ef4444;
+      background: rgba(239, 68, 68, 0.22);
+    }
+
+    .solution-callout {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid #10b981;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      display: none;
+    }
+
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .contrib-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .contrib-card.lead-highlight {
+      border-color: rgba(129, 140, 248, 0.55);
+      background: linear-gradient(145deg, rgba(91, 108, 249, 0.14), rgba(15, 19, 38, 0.85));
+    }
+
+    @media (max-width: 980px) {
+      .site-navbar { padding: 16px 22px; }
+      .hero-wrapper { padding: 110px 22px 56px; }
+      .hero-container { grid-template-columns: 1fr; text-align: left; }
+      .features-two-col-grid { grid-template-columns: 1fr; }
+      .smarter-section, .stat-ninety-section, .bottom-cta-section, .chkela-footer { padding-left: 22px; padding-right: 22px; }
+      .contrib-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       STICKY NAVBAR (Chkela. | Home Features About | Log in)
+       ========================================================================== -->
+  <header class="site-navbar">
+    <a href="#top" class="brand-logo-text" onclick="setActiveNav('home')">
+      Chkela<span class="brand-dot">.</span>
+    </a>
+
+    <div class="nav-right-cluster">
+      <nav class="nav-pill-group" aria-label="Primary Navigation">
+        <button class="nav-pill-link active" id="nav-home" onclick="setActiveNav('home'); window.scrollTo({top:0, behavior:'smooth'})">Home</button>
+        <button class="nav-pill-link" id="nav-features" onclick="setActiveNav('features'); document.getElementById('features').scrollIntoView({behavior:'smooth'})">Features</button>
+        <button class="nav-pill-link" id="nav-about" onclick="setActiveNav('about'); openModal('aboutModal')">About</button>
+      </nav>
+      <button class="nav-login-btn" id="topLoginBtn" onclick="openModal('loginModal')">Log in</button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION (Chkela. Study smarter. Not harder. + 9:41 iPhone Mockup)
+       ========================================================================== -->
+  <section class="hero-wrapper" id="top">
+    <canvas id="orbitalCanvas"></canvas>
+    <div class="hero-ambient-glow"></div>
+
+    <div class="hero-container">
+      <!-- Left Hero Copy -->
+      <div class="hero-left">
+        <h1 class="hero-display-brand">Chkela<span class="big-dot">.</span></h1>
+        <h2 class="hero-tagline">
+          Study smarter.<br />
+          Not harder.
+        </h2>
+        <p class="hero-description">
+          Stop grinding random notes for hours. Chkela shows what actually moves your matric score — then helps you practice it.
+        </p>
+
+        <div class="store-buttons-row">
+          <a href="https://apps.apple.com/us/app/chkela/id6738397728" target="_blank" rel="noopener" class="store-white-pill">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.64-.78 1.08-1.86.96-2.94-.93.04-2.06.62-2.72 1.4-.58.68-1.1 1.79-.96 2.84 1.04.08 2.08-.52 2.72-1.3z"/></svg>
+            <span>App Store</span>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.chkela.v1" target="_blank" rel="noopener" class="store-white-pill">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+            <span>Google Play</span>
+          </a>
+        </div>
+
+        <button class="claim-gift-pill" onclick="openModal('giftModal')">
+          <div class="cg-badge">CG</div>
+          <div class="cg-text">
+            <strong>Claim your gift</strong>
+            <span>Enter your code &amp; phone</span>
+          </div>
+          <span class="cg-arrow">→</span>
+        </button>
+
+        <span class="hero-micro-caption">Free on App Store &amp; Google Play</span>
+      </div>
+
+      <!-- Right Hero Phone Mockup -->
+      <div class="hero-right">
+        <div class="iphone-shell">
+          <div class="iphone-screen">
+            <div class="iphone-statusbar">
+              <span>9:41</span>
+              <div class="dynamic-island"></div>
+              <div class="status-Utility-icons">
+                <span>5G</span>
+                <span>▮▮▮</span>
+              </div>
+            </div>
+
+            <div class="phone-header-row">
+              <div class="phone-brand-cluster">
+                <div class="phone-app-icon">
+                  <svg viewBox="0 0 32 32" fill="none">
+                    <path d="M22.5 9.5C18.5 6.5 12 7.5 9.5 12.5C7 17.5 10.5 23.5 16.5 24.5C20.5 25 23.5 23 24.5 21" stroke="white" stroke-width="3.4" stroke-linecap="round"/>
+                    <path d="M14 14.5C16.5 12.5 20.5 13.5 21.5 16.5" stroke="#93c5fd" stroke-width="2.6" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="phone-brand-titles">
+                  <strong>Chkela</strong>
+                  <span>Smarter matric prep</span>
+                </div>
+              </div>
+              <span class="focus-pill-badge">FOCUS</span>
+            </div>
+
+            <div class="phone-subject-chips">
+              <span class="subject-chip weak-active" onclick="openDrillModal('Physics')">Weak: Physics</span>
+              <span class="subject-chip muted-chip" onclick="openDrillModal('Mathematics')">Math</span>
+              <span class="subject-chip muted-chip" onclick="openDrillModal('Biology')">Biology</span>
+            </div>
+
+            <div class="phone-chat-area" id="phoneChatArea">
+              <div class="phone-bubble tutor-left">
+                You're missing marks on Newton's laws. Want a 5-question drill?
+              </div>
+              <div class="phone-bubble student-right" onclick="openDrillModal('Physics')" title="Click to launch 5-question NEAEA drill">
+                Yes — past paper style
+              </div>
+              <div class="phone-bubble tutor-left">
+                Done. 5 questions from recent NEAEA papers. Finish these before revisiting notes.
+              </div>
+            </div>
+
+            <div class="phone-input-bar" onclick="openDrillModal('Physics')">
+              <span class="phone-input-placeholder">What should I practice next?</span>
+              <button class="phone-send-circle" aria-label="Start Drill">↑</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SCHOOLS MARQUEE SECTION (Exact 12 schools & colors from video_1.mp4)
+       ========================================================================== -->
+  <section class="schools-marquee-section">
+    <p class="schools-eyebrow">OUR STUDENTS COME FROM THESE SCHOOLS</p>
+
+    <div class="marquee-viewport">
+      <div class="marquee-rail" id="schoolsMarqueeRail">
+        <!-- Set 1 -->
+        <div class="school-glass-card" style="--badge-bg:rgba(245,158,11,0.16);--badge-border:rgba(245,158,11,0.45);--badge-text:#fbbf24;--card-glow:rgba(245,158,11,0.6);">
+          <div class="school-initials-box">GY</div>
+          <div class="school-meta"><strong>Gibson</strong><span>Gibson Youth Academy</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(99,102,241,0.18);--badge-border:rgba(129,140,248,0.45);--badge-text:#a5b4fc;--card-glow:rgba(99,102,241,0.6);">
+          <div class="school-initials-box">SF</div>
+          <div class="school-meta"><strong>Sandford</strong><span>Sandford International School</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(59,130,246,0.18);--badge-border:rgba(96,165,250,0.45);--badge-text:#93c5fd;--card-glow:rgba(59,130,246,0.6);">
+          <div class="school-initials-box">ICS</div>
+          <div class="school-meta"><strong>ICS Addis</strong><span>International Community School</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(217,119,6,0.2);--badge-border:rgba(251,191,36,0.5);--badge-text:#fcd34d;--card-glow:rgba(251,191,36,0.7);">
+          <div class="school-initials-box">NZ</div>
+          <div class="school-meta"><strong>Nazareth</strong><span>Nazareth School</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(124,58,237,0.18);--badge-border:rgba(167,139,250,0.45);--badge-text:#c4b5fd;--card-glow:rgba(139,92,246,0.6);">
+          <div class="school-initials-box">SJ</div>
+          <div class="school-meta"><strong>St. Joseph</strong><span>St. Joseph School</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(225,29,72,0.18);--badge-border:rgba(251,113,133,0.45);--badge-text:#fda4af;--card-glow:rgba(244,63,94,0.6);">
+          <div class="school-initials-box">LGM</div>
+          <div class="school-meta"><strong>LGM</strong><span>Lycée Guébré-Mariam</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(234,88,12,0.18);--badge-border:rgba(251,146,60,0.45);--badge-text:#fdba74;--card-glow:rgba(249,115,22,0.6);">
+          <div class="school-initials-box">BA</div>
+          <div class="school-meta"><strong>Bingham</strong><span>Bingham Academy</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(16,185,129,0.18);--badge-border:rgba(52,211,153,0.45);--badge-text:#6ee7b7;--card-glow:rgba(16,185,129,0.65);">
+          <div class="school-initials-box">AD</div>
+          <div class="school-meta"><strong>Andinet</strong><span>Andinet International School</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(139,92,246,0.18);--badge-border:rgba(196,181,253,0.45);--badge-text:#ddd6fe;--card-glow:rgba(139,92,246,0.6);">
+          <div class="school-initials-box">EP</div>
+          <div class="school-meta"><strong>Ethio Parents</strong><span>Ethio Parents' School</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(14,165,233,0.18);--badge-border:rgba(56,189,248,0.45);--badge-text:#7dd3fc;--card-glow:rgba(14,165,233,0.6);">
+          <div class="school-initials-box">SOT</div>
+          <div class="school-meta"><strong>SOT</strong><span>School of Tomorrow</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(34,197,94,0.18);--badge-border:rgba(74,222,128,0.45);--badge-text:#86efac;--card-glow:rgba(34,197,94,0.6);">
+          <div class="school-initials-box">OP</div>
+          <div class="school-meta"><strong>One Planet</strong><span>One Planet International</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(79,70,229,0.18);--badge-border:rgba(129,140,248,0.45);--badge-text:#a5b4fc;--card-glow:rgba(79,70,229,0.6);">
+          <div class="school-initials-box">BIS</div>
+          <div class="school-meta"><strong>BIS Addis</strong><span>British International School</span></div>
+        </div>
+
+        <!-- Set 2 (Duplicate for seamless infinite loop) -->
+        <div class="school-glass-card" style="--badge-bg:rgba(245,158,11,0.16);--badge-border:rgba(245,158,11,0.45);--badge-text:#fbbf24;--card-glow:rgba(245,158,11,0.6);">
+          <div class="school-initials-box">GY</div>
+          <div class="school-meta"><strong>Gibson</strong><span>Gibson Youth Academy</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(99,102,241,0.18);--badge-border:rgba(129,140,248,0.45);--badge-text:#a5b4fc;--card-glow:rgba(99,102,241,0.6);">
+          <div class="school-initials-box">SF</div>
+          <div class="school-meta"><strong>Sandford</strong><span>Sandford International School</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(59,130,246,0.18);--badge-border:rgba(96,165,250,0.45);--badge-text:#93c5fd;--card-glow:rgba(59,130,246,0.6);">
+          <div class="school-initials-box">ICS</div>
+          <div class="school-meta"><strong>ICS Addis</strong><span>International Community School</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(217,119,6,0.2);--badge-border:rgba(251,191,36,0.5);--badge-text:#fcd34d;--card-glow:rgba(251,191,36,0.7);">
+          <div class="school-initials-box">NZ</div>
+          <div class="school-meta"><strong>Nazareth</strong><span>Nazareth School</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(124,58,237,0.18);--badge-border:rgba(167,139,250,0.45);--badge-text:#c4b5fd;--card-glow:rgba(139,92,246,0.6);">
+          <div class="school-initials-box">SJ</div>
+          <div class="school-meta"><strong>St. Joseph</strong><span>St. Joseph School</span></div>
+        </div>
+
+        <div class="school-glass-card" style="--badge-bg:rgba(225,29,72,0.18);--badge-border:rgba(251,113,133,0.45);--badge-text:#fda4af;--card-glow:rgba(244,63,94,0.6);">
+          <div class="school-initials-box">LGM</div>
+          <div class="school-meta"><strong>LGM</strong><span>Lycée Guébré-Mariam</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       "THE SMARTER WAY" 01-06 FEATURES SECTION (Word-for-word from 00:56 - 01:28)
+       ========================================================================== -->
+  <section class="smarter-section" id="features">
+    <span class="smarter-eyebrow">THE SMARTER WAY</span>
+    <h2 class="smarter-display-heading">
+      Less wasted<br />
+      time. More<br />
+      marks.
+    </h2>
+    <p class="smarter-subcopy">
+      Every tool in Chkela is built around one idea: put your energy where it counts for exam day.
+    </p>
+
+    <div class="features-two-col-grid">
+      <div class="feature-row-item">
+        <span class="feature-index-num">01</span>
+        <div class="feature-row-body">
+          <h3>Practice what the exam actually asks</h3>
+          <p>Drill real NEAEA and Grade 12 past papers — so your time goes into the question styles that show up on exam day.</p>
+        </div>
+      </div>
+
+      <div class="feature-row-item">
+        <span class="feature-index-num">02</span>
+        <div class="feature-row-body">
+          <h3>Fix weak spots, skip the rest</h3>
+          <p>See which topics are costing you marks. Double down there instead of re-reading chapters you've already got.</p>
+        </div>
+      </div>
+
+      <div class="feature-row-item">
+        <span class="feature-index-num">03</span>
+        <div class="feature-row-body">
+          <h3>Short drills that compound</h3>
+          <p>Daily quizzes keep what you learned from slipping away — so progress sticks without marathon cram sessions.</p>
+        </div>
+      </div>
+
+      <div class="feature-row-item">
+        <span class="feature-index-num">04</span>
+        <div class="feature-row-body">
+          <h3>Get unstuck in seconds</h3>
+          <p>When a concept won't click, ask the in-app tutor and move on. No more losing an evening to one confusing paragraph.</p>
+        </div>
+      </div>
+
+      <div class="feature-row-item">
+        <span class="feature-index-num">05</span>
+        <div class="feature-row-body">
+          <h3>Notes built for revision</h3>
+          <p>Clear, syllabus-aligned study notes you can open before a quiz or the night before the paper — not a pile of random PDFs.</p>
+        </div>
+      </div>
+
+      <div class="feature-row-item">
+        <span class="feature-index-num">06</span>
+        <div class="feature-row-body">
+          <h3>Stay accountable with peers</h3>
+          <p>Study rooms keep you consistent. Share problems, compare approaches, and keep the pace when motivation dips.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       GIANT "90%" SECTION (Exact match to 01:28 - 01:38)
+       ========================================================================== -->
+  <section class="stat-ninety-section">
+    <div class="giant-ninety-number">90%</div>
+    <h3 class="stat-ninety-title">
+      of Chkela students<br />
+      passed matric last year.
+    </h3>
+    <p class="stat-ninety-sub">
+      Not because they studied longer — because they studied the right things, with feedback that made every session count.
+    </p>
+  </section>
+
+  <!-- ==========================================================================
+       "WORK SMART. PASS STRONG." BOTTOM CTA (Exact match to 01:40 - 01:54)
+       ========================================================================== -->
+  <section class="bottom-cta-section">
+    <div class="bottom-cta-glow"></div>
+    <h2 class="bottom-cta-heading">
+      Work smart.<br />
+      Pass strong.
+    </h2>
+    <p class="bottom-cta-sub">
+      Download Chkela and turn your next study block into progress you can measure — not hours you can't get back.
+    </p>
+
+    <div class="store-buttons-row">
+      <a href="https://apps.apple.com/us/app/chkela/id6738397728" target="_blank" rel="noopener" class="store-white-pill">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.64-.78 1.08-1.86.96-2.94-.93.04-2.06.62-2.72 1.4-.58.68-1.1 1.79-.96 2.84 1.04.08 2.08-.52 2.72-1.3z"/></svg>
+        <span>App Store</span>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.chkela.v1" target="_blank" rel="noopener" class="store-white-pill">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+        <span>Google Play</span>
+      </a>
+    </div>
+
+    <button class="claim-gift-pill" onclick="openModal('giftModal')">
+      <div class="cg-badge">CG</div>
+      <div class="cg-text">
+        <strong>Claim your gift</strong>
+        <span>Enter your code &amp; phone</span>
+      </div>
+      <span class="cg-arrow">→</span>
+    </button>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER (Exact match to 01:50 - 01:54)
+       ========================================================================== -->
+  <footer class="chkela-footer">
+    <div class="footer-left-col">
+      <span class="footer-logo">Chkela.</span>
+      <p>Smarter matric prep for Ethiopian students.</p>
+    </div>
+
+    <div class="footer-right-links">
+      <a href="#terms" onclick="openModal('aboutModal'); return false;">Terms and Conditions</a>
+      <a href="#privacy" onclick="openModal('aboutModal'); return false;">Privacy Policy</a>
+      <a href="tel:+251947819388">+251947819388</a>
+      <a href="mailto:contact@chkela.com">contact@chkela.com</a>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL 1: LOG IN / REGISTER (Ethiopian +251 Auth)
+       ========================================================================== -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-glass-box">
+      <button class="modal-close-x" onclick="closeModal('loginModal')">✕</button>
+      <h3 class="modal-title">Chkela.</h3>
+      <p class="modal-subtitle">Log in with your Ethiopian phone number (+251) or student email to sync your matric progress.</p>
+
+      <form onsubmit="handleAuthLogin(event)">
+        <div class="field-block">
+          <label>Phone Number (+251) or Email</label>
+          <input type="text" id="authPhoneInput" placeholder="+251 947 819 388" required />
+        </div>
+        <div class="field-block">
+          <label>Password</label>
+          <input type="password" id="authPassInput" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="primary-action-btn">Log in to Chkela</button>
+      </form>
+
+      <button class="primary-action-btn" style="background:rgba(255,255,255,0.08);margin-top:10px;" onclick="closeModal('loginModal'); openDrillModal('Physics');">
+        Launch Natural Sciences 5-Question NEAEA Drill →
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: CLAIM YOUR GIFT (CG Code + Phone)
+       ========================================================================== -->
+  <div class="modal-overlay" id="giftModal">
+    <div class="modal-glass-box">
+      <button class="modal-close-x" onclick="closeModal('giftModal')">✕</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+        <div class="cg-badge">CG</div>
+        <h3 class="modal-title" style="margin:0;">Claim your gift</h3>
+      </div>
+      <p class="modal-subtitle">Enter your Chkela gift code and Ethiopian phone number to unlock full NEAEA past-paper packs.</p>
+
+      <form onsubmit="handleGiftClaim(event)">
+        <div class="field-block">
+          <label>Gift Code</label>
+          <input type="text" id="giftCodeVal" placeholder="e.g. CHKELA2026" required />
+        </div>
+        <div class="field-block">
+          <label>Phone Number (+251)</label>
+          <input type="tel" id="giftPhoneVal" placeholder="+251 9XX XXX XXX" required />
+        </div>
+        <button type="submit" class="primary-action-btn">Redeem Gift →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 3: INTERACTIVE 5-QUESTION NEAEA DRILL (Natural Sciences by Gosa)
+       ========================================================================== -->
+  <div class="modal-overlay" id="drillModal">
+    <div class="modal-glass-box wide-modal">
+      <button class="modal-close-x" onclick="closeModal('drillModal')">✕</button>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+        <span class="focus-pill-badge" id="drillBadge">NEAEA PAST-PAPER DRILL · NATURAL SCIENCES</span>
+        <span style="font-size:0.78rem;color:rgba(255,255,255,0.55);">Curated &amp; Solved by <strong>Gosa Negeso Geleto</strong></span>
+      </div>
+
+      <h3 class="modal-title" id="drillTopicTitle" style="font-size:1.25rem;">Newton's Laws &amp; Equilibrium</h3>
+      <p id="drillStem" style="font-size:1rem;line-height:1.6;margin:14px 0 20px;color:#f1f5f9;"></p>
+
+      <div id="drillOptionsBox"></div>
+
+      <div class="solution-callout" id="drillSolutionBox"></div>
+
+      <div style="display:flex;justify-content:space-between;margin-top:20px;gap:12px;">
+        <button class="nav-login-btn" onclick="prevDrillQ()">← Previous</button>
+        <button class="nav-login-btn" style="background:#5b6cf9;" onclick="nextDrillQ()">Next NEAEA Question →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 4: ABOUT CHKELA & CONTRIBUTORS (Lolearn Solutions)
+       ========================================================================== -->
+  <div class="modal-overlay" id="aboutModal">
+    <div class="modal-glass-box wide-modal">
+      <button class="modal-close-x" onclick="closeModal('aboutModal')">✕</button>
+      <h3 class="modal-title">About Chkela.</h3>
+      <p class="modal-subtitle">
+        Built by <strong>Lolearn Solutions</strong> (Golagol – Bole, Addis Ababa) to help 73,000+ Ethiopian high school students master the Grade 9–12 NEAEA matriculation examination.
+      </p>
+
+      <div class="contrib-grid">
+        <div class="contrib-card lead-highlight">
+          <span style="font-size:0.7rem;font-weight:800;color:#a5b4fc;letter-spacing:0.08em;">CO-FOUNDER · FRONTEND &amp; NATURAL SCIENCES LEAD</span>
+          <h4 style="font-size:1.1rem;margin:6px 0;">Gosa Negeso Geleto</h4>
+          <p style="font-size:0.84rem;color:rgba(255,255,255,0.72);line-height:1.55;">
+            Spearheaded frontend web/mobile interface development and authored Chkela's Grade 9–12 <strong>Natural Sciences assessment bank and step-by-step solutions</strong> (Physics, Chemistry, Biology, and Mathematics). Ranked #2 nationally on the Ethiopian Secondary School Leaving Examination (590/600).
+          </p>
+        </div>
+
+        <div class="contrib-card">
+          <span style="font-size:0.7rem;font-weight:800;color:#6ee7b7;letter-spacing:0.08em;">MOBILE &amp; RELEASE ENGINEERING</span>
+          <h4 style="font-size:1.1rem;margin:6px 0;">Tefera Bereket</h4>
+          <p style="font-size:0.84rem;color:rgba(255,255,255,0.72);line-height:1.55;">
+            Cross-platform mobile engineering, iOS App Store release (<code>id6738397728</code>), and Google Play deployment (<code>com.chkela.v1</code>).
+          </p>
+        </div>
+
+        <div class="contrib-card">
+          <span style="font-size:0.7rem;font-weight:800;color:#93c5fd;letter-spacing:0.08em;">BACKEND &amp; AI TUTOR SYSTEMS</span>
+          <h4 style="font-size:1.1rem;margin:6px 0;">Samuel Wondimagegnehu Beshah</h4>
+          <p style="font-size:0.84rem;color:rgba(255,255,255,0.72);line-height:1.55;">
+            Python, FastAPI, and LangGraph orchestration powering the in-app tutor and topic weakness diagnostics.
+          </p>
+        </div>
+
+        <div class="contrib-card">
+          <span style="font-size:0.7rem;font-weight:800;color:#fcd34d;letter-spacing:0.08em;">CO-FOUNDER &amp; PEER STUDY ARCHITECTURE</span>
+          <h4 style="font-size:1.1rem;margin:6px 0;">Kalid Beshir Hasen</h4>
+          <p style="font-size:0.84rem;color:rgba(255,255,255,0.72);line-height:1.55;">
+            Co-founded peer study rooms, national school partnerships, and student accountability systems.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT: 3D ORBITAL RINGS CANVAS + NATURAL SCIENCES DRILL ENGINE
+       ========================================================================== -->
+  <script>
+    /* 1. Animated 3D Glowing Orbital Rings & Particles (Matches Hero Video 00:00-00:22) */
+    (function initOrbitalCanvas() {
+      const canvas = document.getElementById('orbitalCanvas');
+      const ctx = canvas.getContext('2d');
+      let width, height, particles = [], tick = 0;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      for (let i = 0; i < 42; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 2.2 + 0.6,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          alpha: Math.random() * 0.65 + 0.2
+        });
+      }
+
+      function drawFrame() {
+        ctx.clearRect(0, 0, width, height);
+        tick += 0.0045;
+
+        const cx = width * 0.5;
+        const cy = height * 0.5;
+
+        // Draw sweeping 3D tilted orbital light arcs
+        const orbits = [
+          { rx: width * 0.42, ry: height * 0.22, rot: -0.32 + Math.sin(tick) * 0.04, color: 'rgba(99, 102, 241, 0.28)', lw: 2.2 },
+          { rx: width * 0.34, ry: height * 0.17, rot: -0.24 + Math.cos(tick) * 0.05, color: 'rgba(129, 140, 248, 0.36)', lw: 1.6 },
+          { rx: width * 0.52, ry: height * 0.28, rot: -0.38, color: 'rgba(79, 70, 229, 0.18)', lw: 2.8 }
+        ];
+
+        orbits.forEach((o, idx) => {
+          ctx.save();
+          ctx.translate(cx, cy);
+          ctx.rotate(o.rot);
+          ctx.beginPath();
+          ctx.ellipse(0, 0, o.rx, o.ry, 0, 0, Math.PI * 2);
+          ctx.strokeStyle = o.color;
+          ctx.lineWidth = o.lw;
+          ctx.shadowColor = '#6366f1';
+          ctx.shadowBlur = 18;
+          ctx.stroke();
+
+          // Orbiting bright photon node along the ring
+          const angle = tick * (1.8 + idx * 0.5) + idx * 2;
+          const px = Math.cos(angle) * o.rx;
+          const py = Math.sin(angle) * o.ry;
+          ctx.beginPath();
+          ctx.arc(px, py, 3.2, 0, Math.PI * 2);
+          ctx.fillStyle = '#e0e7ff';
+          ctx.shadowColor = '#818cf8';
+          ctx.shadowBlur = 16;
+          ctx.fill();
+          ctx.restore();
+        });
+
+        // Floating ambient bokeh particles
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(165, 180, 252, ${p.alpha})`;
+          ctx.fill();
+        });
+
+        requestAnimationFrame(drawFrame);
+      }
+      drawFrame();
+    })();
+
+    /* 2. Navigation & Modal Helpers */
+    function setActiveNav(tab) {
+      ['home', 'features', 'about'].forEach(id => {
+        const el = document.getElementById('nav-' + id);
+        if (el) el.classList.toggle('active', id === tab);
+      });
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    /* 3. Natural Sciences 5-Question NEAEA Past-Paper Drill (Written by Gosa Negeso Geleto) */
+    const NEAEA_DRILL_QUESTIONS = [
+      {
+        subject: "Physics · NEAEA Past Paper",
+        topic: "Newton's Second Law & Inclined Pulley Systems",
+        stem: "Q1/5: A 4.0 kg block rests on a rough 30° incline (μs = 0.65). What is the magnitude of the static frictional force acting on the block? (Use g = 10 m/s²)",
+        options: [
+          "A) 22.5 N",
+          "B) 20.0 N",
+          "C) 34.6 N",
+          "D) 17.3 N"
+        ],
+        correct: 1,
+        solution: "Correct Answer: B (20.0 N). The downward pull parallel to the incline is mg sin(30°) = 4 × 10 × 0.5 = 20.0 N. Maximum possible static friction is μs mg cos(30°) = 0.65 × 40 × 0.866 = 22.5 N. Since 20.0 N < 22.5 N, the block remains stationary and static friction equals the exact driving force: 20.0 N."
+      },
+      {
+        subject: "Physics · NEAEA Past Paper",
+        topic: "Work-Energy Theorem & Power",
+        stem: "Q2/5: A 10 kg crate is pulled up a rough 37° incline (μk = 0.25) at a constant speed of 2.5 m/s. What power is delivered by the pulling rope? (sin 37° = 0.6, cos 37° = 0.8, g = 10 m/s²)",
+        options: [
+          "A) 150 W",
+          "B) 200 W",
+          "C) 250 W",
+          "D) 80 W"
+        ],
+        correct: 1,
+        solution: "Correct Answer: B (200 W). Constant velocity means net force = 0, so T = mg sin(37°) + μk mg cos(37°) = 60 N + 20 N = 80 N. Power P = T × v = 80 N × 2.5 m/s = 200 W."
+      },
+      {
+        subject: "Chemistry · NEAEA Past Paper",
+        topic: "Electrochemistry & Gibbs Free Energy",
+        stem: "Q3/5: In a Zn | Zn²⁺(1M) || Cu²⁺(1M) | Cu galvanic cell, E°cell = +1.10 V. What is the standard Gibbs free energy change ΔG° at 298 K? (F = 96,500 C/mol)",
+        options: [
+          "A) -106.15 kJ/mol",
+          "B) -212.30 kJ/mol",
+          "C) +212.30 kJ/mol",
+          "D) -96.50 kJ/mol"
+        ],
+        correct: 1,
+        solution: "Correct Answer: B (-212.30 kJ/mol). With n = 2 moles of electrons transferred, ΔG° = -nFE° = -(2)(96,500 C/mol)(1.10 V) = -212,300 J/mol = -212.30 kJ/mol."
+      },
+      {
+        subject: "Biology · NEAEA Past Paper",
+        topic: "Molecular Genetics & Chargaff's Rule",
+        stem: "Q4/5: A double-stranded DNA molecule contains 1,200 base pairs, and 28% of its nitrogenous bases are Adenine (A). How many Cytosine (C) nucleotides are present?",
+        options: [
+          "A) 528 Cytosine nucleotides",
+          "B) 264 Cytosine nucleotides",
+          "C) 672 Cytosine nucleotides",
+          "D) 336 Cytosine nucleotides"
+        ],
+        correct: 0,
+        solution: "Correct Answer: A (528). 1,200 base pairs = 2,400 total bases. Since %A = %T = 28%, G + C = 44%, so %C = 22%. Total Cytosine = 0.22 × 2,400 = 528."
+      },
+      {
+        subject: "Mathematics · NEAEA Past Paper",
+        topic: "Calculus & Absolute Extrema",
+        stem: "Q5/5: For f(x) = x³ - 6x² + 9x + 2 on the closed interval [0, 4], what is the sum of the absolute maximum and absolute minimum values?",
+        options: [
+          "A) 8",
+          "B) 6",
+          "C) 10",
+          "D) 4"
+        ],
+        correct: 0,
+        solution: "Correct Answer: A (8). Critical points from f'(x) = 3(x-1)(x-3) = 0 are x = 1 and x = 3. Evaluating f(0)=2, f(1)=6, f(3)=2, f(4)=6 gives Max = 6 and Min = 2. Sum = 6 + 2 = 8."
+      }
+    ];
+
+    let currentDrillIdx = 0;
+
+    function openDrillModal(preferredSubject) {
+      if (preferredSubject === 'Mathematics') currentDrillIdx = 4;
+      else if (preferredSubject === 'Biology') currentDrillIdx = 3;
+      else currentDrillIdx = 0;
+      renderDrillQuestion();
+      openModal('drillModal');
+    }
+
+    function renderDrillQuestion() {
+      const q = NEAEA_DRILL_QUESTIONS[currentDrillIdx];
+      document.getElementById('drillBadge').textContent = q.subject.toUpperCase();
+      document.getElementById('drillTopicTitle').textContent = q.topic;
+      document.getElementById('drillStem').textContent = q.stem;
+
+      const box = document.getElementById('drillOptionsBox');
+      box.innerHTML = '';
+      const solBox = document.getElementById('drillSolutionBox');
+      solBox.style.display = 'none';
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'drill-option-btn';
+        btn.textContent = opt;
+        btn.onclick = () => {
+          const allBtns = box.querySelectorAll('.drill-option-btn');
+          allBtns.forEach((b, i) => {
+            b.disabled = true;
+            if (i === q.correct) b.classList.add('correct');
+          });
+          if (idx !== q.correct) btn.classList.add('wrong');
+          solBox.textContent = q.solution;
+          solBox.style.display = 'block';
+        };
+        box.appendChild(btn);
+      });
+    }
+
+    function nextDrillQ() {
+      currentDrillIdx = (currentDrillIdx + 1) % NEAEA_DRILL_QUESTIONS.length;
+      renderDrillQuestion();
+    }
+
+    function prevDrillQ() {
+      currentDrillIdx = (currentDrillIdx - 1 + NEAEA_DRILL_QUESTIONS.length) % NEAEA_DRILL_QUESTIONS.length;
+      renderDrillQuestion();
+    }
+
+    function handleAuthLogin(e) {
+      e.preventDefault();
+      const val = document.getElementById('authPhoneInput').value.trim();
+      closeModal('loginModal');
+      document.getElementById('topLoginBtn').textContent = 'Student (' + val.slice(-4) + ')';
+      openDrillModal('Physics');
+    }
+
+    function handleGiftClaim(e) {
+      e.preventDefault();
+      const code = document.getElementById('giftCodeVal').value.trim().toUpperCase();
+      closeModal('giftModal');
+      openDrillModal('Physics');
+    }
+  </script>
+</body>
+</html>
