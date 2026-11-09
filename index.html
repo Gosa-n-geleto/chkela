@@ -10,20 +10,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-deep: #04050c;
-      --bg-surface: #0b0e1d;
-      --bg-glass: rgba(15, 19, 38, 0.72);
+      --bg-void: #04050b;
+      --bg-deep: #070914;
+      --bg-card: rgba(15, 18, 34, 0.78);
       --text-white: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.68);
-      --text-muted: rgba(255, 255, 255, 0.45);
-      --indigo-primary: #5b6cf9;
-      --indigo-glow: #4f46e5;
-      --indigo-soft: #818cf8;
+      --text-soft: #cfd6ea;
+      --text-secondary: rgba(214, 222, 245, 0.68);
+      --text-muted: rgba(180, 190, 220, 0.46);
+      --accent-indigo: #6366f1;
+      --accent-periwinkle: #8b9cf7;
+      --accent-lavender: #a5b4fc;
       --emerald-focus: #10b981;
-      --gold-gift: #d97706;
-      --gold-light: #fbbf24;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-bright: rgba(255, 255, 255, 0.16);
+      --gold-border: rgba(217, 140, 46, 0.42);
+      --gold-badge: #f59e0b;
+      --border-line: rgba(255, 255, 255, 0.08);
       --font-display: 'Unbounded', sans-serif;
       --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -36,7 +36,7 @@
 
     html {
       scroll-behavior: smooth;
-      background-color: var(--bg-deep);
+      background-color: var(--bg-void);
       color: var(--text-white);
       font-family: var(--font-sans);
       -webkit-font-smoothing: antialiased;
@@ -44,7 +44,7 @@
     }
 
     body {
-      background-color: var(--bg-deep);
+      background-color: var(--bg-void);
       color: var(--text-white);
       overflow-x: hidden;
       min-height: 100vh;
@@ -52,116 +52,114 @@
     }
 
     /* ==========================================================================
-       1. STICKY TOP NAVBAR (Exact match to video_1.mp4 00:00 - 01:54)
+       1. TOP STICKY NAVBAR (Exact match to 01:45 - 02:26 & 03:54)
        ========================================================================== */
-    .site-navbar {
+    .chkela-navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
+      height: 74px;
       z-index: 1000;
-      padding: 18px 48px;
+      background: rgba(5, 7, 16, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: linear-gradient(180deg, rgba(4, 5, 12, 0.88) 0%, rgba(4, 5, 12, 0.45) 75%, transparent 100%);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      padding: 0 max(32px, calc((100vw - 1180px) / 2));
+      transition: opacity 0.25s ease;
     }
 
-    .brand-logo-text {
+    .nav-brand {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: 1.38rem;
-      letter-spacing: -0.03em;
-      color: var(--text-white);
+      font-size: 1.32rem;
+      letter-spacing: -0.04em;
+      color: #ffffff;
       text-decoration: none;
       display: inline-flex;
       align-items: baseline;
+      cursor: pointer;
+      transform: scaleX(1.05);
+      transform-origin: left center;
       user-select: none;
     }
 
-    .brand-logo-text .brand-dot {
-      color: var(--text-white);
-      font-size: 1.55rem;
-      line-height: 0;
+    .nav-brand .purple-dot {
+      color: #6366f1;
       margin-left: 1px;
     }
 
-    .nav-right-cluster {
+    .nav-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 6px;
     }
 
-    .nav-pill-group {
-      display: flex;
-      align-items: center;
-      background: rgba(18, 22, 44, 0.78);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 999px;
-      padding: 4px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
-    }
-
-    .nav-pill-link {
+    .nav-item-btn {
       font-family: var(--font-sans);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      color: rgba(255, 255, 255, 0.78);
-      text-decoration: none;
-      padding: 8px 20px;
-      border-radius: 999px;
-      transition: all 0.22s ease;
-      cursor: pointer;
-      border: none;
+      color: rgba(255, 255, 255, 0.82);
       background: transparent;
-    }
-
-    .nav-pill-link:hover {
-      color: var(--text-white);
-    }
-
-    .nav-pill-link.active {
-      background: #ffffff;
-      color: #060814;
-      font-weight: 700;
-      box-shadow: 0 2px 12px rgba(255, 255, 255, 0.25);
-    }
-
-    .nav-login-btn {
-      font-family: var(--font-sans);
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-white);
-      background: rgba(67, 79, 175, 0.28);
-      border: 1px solid rgba(129, 140, 248, 0.35);
-      padding: 10px 22px;
+      border: none;
+      padding: 9px 20px;
       border-radius: 999px;
       cursor: pointer;
-      transition: all 0.22s ease;
-      backdrop-filter: blur(12px);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .nav-login-btn:hover {
-      background: rgba(91, 108, 249, 0.45);
-      border-color: rgba(165, 180, 252, 0.65);
+    .nav-item-btn:hover {
+      color: #ffffff;
+    }
+
+    .nav-item-btn.active {
+      background: #ffffff;
+      color: #080a14;
+      font-weight: 700;
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.32);
+    }
+
+    .nav-login-pill {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #090d1d;
+      background: linear-gradient(180deg, #b4c2fc 0%, #8fa0f6 100%);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 9px 22px;
+      border-radius: 999px;
+      margin-left: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 18px rgba(139, 156, 247, 0.28);
+    }
+
+    .nav-login-pill:hover {
       transform: translateY(-1px);
+      background: linear-gradient(180deg, #c7d2fe 0%, #a5b4fc 100%);
+      box-shadow: 0 6px 24px rgba(139, 156, 247, 0.42);
     }
 
     /* ==========================================================================
-       2. HERO SECTION WITH 3D ORBITAL RINGS CANVAS (00:00 - 00:24)
+       2. HERO SECTION & 3D RIBBON SWIRL CANVAS (00:00 - 00:56)
        ========================================================================== */
-    .hero-wrapper {
+    .hero-section {
       position: relative;
-      min-height: 100vh;
+      min-height: 94vh;
       display: flex;
       align-items: center;
-      padding: 120px 48px 70px;
+      padding: 118px 32px 64px;
       overflow: hidden;
     }
 
-    #orbitalCanvas {
+    #heroVortexCanvas {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -170,23 +168,10 @@
       pointer-events: none;
     }
 
-    .hero-ambient-glow {
-      position: absolute;
-      width: 780px;
-      height: 780px;
-      left: 50%;
-      top: 46%;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(79, 70, 229, 0.26) 0%, rgba(55, 48, 163, 0.12) 42%, transparent 70%);
-      filter: blur(60px);
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .hero-container {
+    .hero-inner {
       position: relative;
       z-index: 2;
-      max-width: 1220px;
+      max-width: 1160px;
       width: 100%;
       margin: 0 auto;
       display: grid;
@@ -195,221 +180,218 @@
       gap: 48px;
     }
 
-    /* Left Column Copy */
-    .hero-left {
-      max-width: 590px;
+    /* Left Column */
+    .hero-copy-col {
+      max-width: 570px;
     }
 
-    .hero-display-brand {
+    .hero-giant-logo {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(3.6rem, 6.6vw, 5.45rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
+      font-size: clamp(3.75rem, 6.8vw, 5.65rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
       color: #ffffff;
-      margin-bottom: 18px;
-      text-shadow: 0 0 40px rgba(255, 255, 255, 0.18);
-    }
-
-    .hero-display-brand .big-dot {
+      margin-bottom: 16px;
+      transform: scaleX(1.06);
+      transform-origin: left center;
       display: inline-block;
-      color: #ffffff;
-      font-size: 1.08em;
-      margin-left: 2px;
+      text-shadow: 0 4px 36px rgba(255, 255, 255, 0.14);
     }
 
-    .hero-tagline {
+    .hero-giant-logo .hero-dot {
+      color: #dbe4ff;
+      margin-left: 1px;
+    }
+
+    .hero-sub-headline {
       font-family: var(--font-sans);
-      font-weight: 800;
-      font-size: clamp(2rem, 3.3vw, 2.85rem);
+      font-weight: 700;
+      font-size: clamp(1.85rem, 2.95vw, 2.55rem);
       line-height: 1.12;
       letter-spacing: -0.03em;
-      color: #ffffff;
-      margin-bottom: 22px;
+      color: #d6def2;
+      margin-bottom: 20px;
     }
 
-    .hero-description {
-      font-size: 1.08rem;
+    .hero-lead-paragraph {
+      font-size: 1.04rem;
       line-height: 1.62;
-      color: var(--text-secondary);
-      max-width: 485px;
-      margin-bottom: 32px;
+      color: rgba(214, 222, 242, 0.72);
+      max-width: 470px;
+      margin-bottom: 30px;
       font-weight: 400;
     }
 
-    /* Store Pill Buttons */
-    .store-buttons-row {
+    /* App Store & Google Play White Pills */
+    .store-pills-row {
       display: flex;
       align-items: center;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
-    .store-white-pill {
+    .store-pill-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: #ffffff;
-      color: #070913;
+      background: #eef2ff;
+      color: #0b0f1e;
       font-family: var(--font-sans);
       font-weight: 700;
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       padding: 14px 26px;
       border-radius: 999px;
       text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
     }
 
-    .store-white-pill:hover {
+    .store-pill-btn:hover {
+      background: #ffffff;
       transform: translateY(-2px);
-      box-shadow: 0 14px 34px rgba(255, 255, 255, 0.22);
+      box-shadow: 0 12px 32px rgba(255, 255, 255, 0.2);
     }
 
-    .store-white-pill svg {
-      width: 18px;
-      height: 18px;
+    .store-pill-btn svg {
+      width: 17px;
+      height: 17px;
       flex-shrink: 0;
     }
 
-    /* Claim Your Gift Button (Exact match to video_1.mp4) */
-    .claim-gift-pill {
+    /* Claim Your Gift Box (Exact match to 00:50 & 03:08) */
+    .gift-trigger-btn {
       display: inline-flex;
       align-items: center;
       gap: 14px;
-      background: linear-gradient(135deg, rgba(28, 25, 23, 0.85) 0%, rgba(17, 19, 34, 0.9) 100%);
-      border: 1px solid rgba(217, 119, 6, 0.38);
-      border-radius: 16px;
-      padding: 11px 18px 11px 12px;
+      background: linear-gradient(90deg, rgba(44, 33, 24, 0.78) 0%, rgba(19, 21, 38, 0.88) 100%);
+      border: 1px solid rgba(217, 140, 46, 0.42);
+      border-radius: 999px;
+      padding: 9px 22px 9px 10px;
       cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(251, 191, 36, 0.12);
-      margin-bottom: 16px;
+      transition: all 0.22s ease;
+      color: #ffffff;
       text-align: left;
-      color: var(--text-white);
+      margin-bottom: 16px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
     }
 
-    .claim-gift-pill:hover {
-      border-color: rgba(251, 191, 36, 0.72);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 34px rgba(217, 119, 6, 0.18);
+    .gift-trigger-btn:hover {
+      border-color: rgba(245, 158, 11, 0.75);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 30px rgba(217, 119, 6, 0.2);
     }
 
-    .cg-badge {
+    .cg-icon-box {
       width: 38px;
       height: 38px;
-      border-radius: 10px;
-      background: rgba(217, 119, 6, 0.18);
-      border: 1px solid rgba(251, 191, 36, 0.4);
-      color: var(--gold-light);
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.16);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      color: #fbbf24;
       font-weight: 800;
-      font-size: 0.82rem;
+      font-size: 0.76rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      letter-spacing: 0.02em;
       flex-shrink: 0;
+      letter-spacing: 0.03em;
     }
 
-    .cg-text {
+    .cg-copy {
       display: flex;
       flex-direction: column;
-      line-height: 1.28;
+      line-height: 1.25;
     }
 
-    .cg-text strong {
-      font-size: 0.9rem;
+    .cg-copy strong {
+      font-size: 0.88rem;
       font-weight: 700;
       color: #ffffff;
     }
 
-    .cg-text span {
-      font-size: 0.76rem;
+    .cg-copy span {
+      font-size: 0.75rem;
       color: rgba(255, 255, 255, 0.56);
     }
 
-    .cg-arrow {
-      color: rgba(255, 255, 255, 0.55);
-      font-size: 1rem;
+    .cg-arrow-icon {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.95rem;
       margin-left: 8px;
-      transition: transform 0.2s ease;
     }
 
-    .claim-gift-pill:hover .cg-arrow {
-      transform: translateX(3px);
-      color: var(--gold-light);
-    }
-
-    .hero-micro-caption {
+    .free-caption {
       display: block;
-      font-size: 0.78rem;
-      color: rgba(255, 255, 255, 0.42);
-      margin-top: 2px;
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.4);
     }
 
     /* ==========================================================================
-       3. RIGHT COLUMN: IPHONE MOCKUP (Exact match to 00:10 - 00:16 zoom-in)
+       3. FLOATING IPHONE MOCKUP (00:10 - 00:16, gentle up-and-down bobbing)
        ========================================================================== */
-    .hero-right {
+    .hero-phone-col {
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .iphone-shell {
-      width: 356px;
-      background: linear-gradient(160deg, #1b213f 0%, #0b0e1e 50%, #141830 100%);
-      border-radius: 48px;
-      padding: 11px;
-      box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.78),
-        0 0 65px rgba(79, 70, 229, 0.26),
-        inset 0 1px 2px rgba(255, 255, 255, 0.22);
-      position: relative;
+    @keyframes subtlePhoneFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-9px); }
     }
 
-    .iphone-screen {
-      background: linear-gradient(180deg, #0d1021 0%, #080a15 100%);
-      border-radius: 38px;
+    .iphone-frame {
+      width: 348px;
+      background: linear-gradient(160deg, #22294a 0%, #0d1021 50%, #181e38 100%);
+      border-radius: 48px;
+      padding: 10px;
+      box-shadow:
+        0 32px 80px rgba(0, 0, 0, 0.82),
+        0 0 60px rgba(79, 70, 229, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.25);
+      animation: subtlePhoneFloat 5.2s ease-in-out infinite;
+    }
+
+    .iphone-inner-screen {
+      background: linear-gradient(180deg, #101426 0%, #090c18 100%);
+      border-radius: 40px;
       padding: 14px 18px 18px;
+      min-height: 604px;
       display: flex;
       flex-direction: column;
-      min-height: 615px;
       position: relative;
-      overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    /* Top Status Bar & Dynamic Island */
-    .iphone-statusbar {
+    .phone-top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 2px 6px 14px;
       font-size: 0.76rem;
       font-weight: 700;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.88);
     }
 
-    .dynamic-island {
-      width: 86px;
+    .phone-notch-pill {
+      width: 82px;
       height: 22px;
-      background: #000000;
+      background: #020308;
       border-radius: 999px;
     }
 
-    .status-Utility-icons {
+    .phone-signal-icons {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       font-size: 0.68rem;
       color: rgba(255, 255, 255, 0.75);
     }
 
-    /* Phone App Header */
-    .phone-header-row {
+    .phone-app-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -417,1363 +399,1552 @@
       padding-top: 4px;
     }
 
-    .phone-brand-cluster {
+    .phone-logo-group {
       display: flex;
       align-items: center;
       gap: 11px;
     }
 
-    .phone-app-icon {
+    .phone-wave-icon {
       width: 40px;
       height: 40px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%);
+      background: linear-gradient(145deg, #5b6cf9 0%, #3b308a 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.45);
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(91, 108, 249, 0.38);
     }
 
-    .phone-app-icon svg {
+    .phone-wave-icon svg {
       width: 24px;
       height: 24px;
     }
 
-    .phone-brand-titles {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .phone-brand-titles strong {
+    .phone-title-stack strong {
+      display: block;
       font-size: 0.98rem;
       font-weight: 800;
       color: #ffffff;
       line-height: 1.15;
     }
 
-    .phone-brand-titles span {
-      font-size: 0.74rem;
-      color: rgba(255, 255, 255, 0.52);
+    .phone-title-stack span {
+      font-size: 0.73rem;
+      color: rgba(255, 255, 255, 0.54);
     }
 
-    .focus-pill-badge {
+    .phone-focus-tag {
       background: rgba(16, 185, 129, 0.14);
       border: 1px solid rgba(16, 185, 129, 0.42);
       color: #34d399;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 800;
-      padding: 5px 11px;
-      border-radius: 999px;
+      padding: 5px 10px;
+      border-radius: 8px;
       letter-spacing: 0.05em;
     }
 
-    /* Subject Weakness Chips Row (Weak: Physics | Math | Biology) */
-    .phone-subject-chips {
+    .phone-chips-row {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    .subject-chip {
-      font-size: 0.74rem;
+    .p-chip {
+      font-size: 0.73rem;
       font-weight: 700;
       padding: 6px 12px;
       border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      user-select: none;
     }
 
-    .subject-chip.weak-active {
-      background: rgba(91, 108, 249, 0.22);
-      border: 1px solid rgba(129, 140, 248, 0.52);
+    .p-chip.active-weak {
+      background: rgba(99, 102, 241, 0.24);
+      border: 1px solid rgba(129, 140, 248, 0.5);
       color: #c7d2fe;
     }
 
-    .subject-chip.muted-chip {
+    .p-chip.passive {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      color: rgba(255, 255, 255, 0.58);
+      color: rgba(255, 255, 255, 0.56);
     }
 
-    .subject-chip.muted-chip:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-    }
-
-    /* Phone Chat Bubbles Stream */
-    .phone-chat-area {
+    .phone-messages {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 13px;
       flex: 1;
     }
 
-    .phone-bubble {
-      font-size: 0.84rem;
-      line-height: 1.48;
-      padding: 13px 16px;
-      border-radius: 18px;
+    .p-msg {
+      font-size: 0.83rem;
+      line-height: 1.46;
+      padding: 13px 15px;
+      border-radius: 16px;
       max-width: 90%;
-      animation: fadeBubble 0.35s ease forwards;
     }
 
-    @keyframes fadeBubble {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .phone-bubble.tutor-left {
-      background: rgba(26, 31, 56, 0.92);
+    .p-msg.left-dark {
+      background: rgba(25, 30, 52, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.08);
       color: rgba(255, 255, 255, 0.92);
       align-self: flex-start;
-      border-top-left-radius: 6px;
     }
 
-    .phone-bubble.student-right {
-      background: linear-gradient(135deg, #5b6cf9 0%, #4f46e5 100%);
+    .p-msg.right-indigo {
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
       color: #ffffff;
       font-weight: 600;
       align-self: flex-end;
-      border-bottom-right-radius: 6px;
-      box-shadow: 0 6px 20px rgba(91, 108, 249, 0.35);
-      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
     }
 
-    /* Bottom Input Bar inside Phone */
-    .phone-input-bar {
+    /* Bottom bar with exact glowing circle Play Triangle (00:10 & 03:54) */
+    .phone-bottom-prompt {
       margin-top: auto;
-      background: rgba(22, 26, 48, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 999px;
-      padding: 8px 8px 8px 16px;
+      background: rgba(22, 26, 46, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      padding: 10px 12px 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      cursor: pointer;
-      transition: border-color 0.2s ease;
     }
 
-    .phone-input-bar:hover {
-      border-color: rgba(129, 140, 248, 0.5);
+    .phone-bottom-prompt span {
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.44);
     }
 
-    .phone-input-placeholder {
-      font-size: 0.78rem;
-      color: rgba(255, 255, 255, 0.42);
-    }
-
-    .phone-send-circle {
-      width: 30px;
-      height: 30px;
+    .phone-play-btn {
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: #5b6cf9;
-      color: #ffffff;
+      background: linear-gradient(135deg, #c7d2fe 0%, #818cf8 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 800;
-      border: none;
-      cursor: pointer;
+      box-shadow: 0 0 14px rgba(129, 140, 248, 0.65);
+    }
+
+    .phone-play-btn svg {
+      width: 11px;
+      height: 11px;
+      fill: #0b0f1e;
+      margin-left: 1px;
     }
 
     /* ==========================================================================
-       4. SCHOOLS MARQUEE SECTION (00:24 - 00:54)
+       4. SCHOOLS MARQUEE SECTION (01:00 - 01:40)
        ========================================================================== */
-    .schools-marquee-section {
-      padding: 46px 0 64px;
+    .schools-strip {
+      padding: 40px 0 64px;
       position: relative;
       z-index: 2;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(5, 7, 15, 0.65);
     }
 
-    .schools-eyebrow {
+    .schools-strip-title {
       text-align: center;
-      font-size: 0.73rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.46);
-      margin-bottom: 28px;
+      color: rgba(255, 255, 255, 0.48);
+      margin-bottom: 26px;
     }
 
-    .marquee-viewport {
+    .marquee-window {
       width: 100%;
       overflow: hidden;
-      position: relative;
-      padding: 12px 0;
-      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      padding: 10px 0;
+      mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
     }
 
-    .marquee-rail {
+    .marquee-track {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
       width: max-content;
-      animation: chkelaMarqueeScroll 38s linear infinite;
+      animation: scrollSchools 36s linear infinite;
     }
 
-    .marquee-rail:hover {
+    .marquee-track:hover {
       animation-play-state: paused;
     }
 
-    @keyframes chkelaMarqueeScroll {
+    @keyframes scrollSchools {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
-    .school-glass-card {
+    .school-badge-card {
       display: flex;
       align-items: center;
       gap: 14px;
-      background: rgba(15, 19, 36, 0.78);
+      background: rgba(14, 18, 34, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.09);
       border-radius: 16px;
       padding: 14px 22px 14px 16px;
-      min-width: 248px;
-      transition: all 0.28s ease;
-      cursor: default;
-      backdrop-filter: blur(12px);
+      min-width: 246px;
+      transition: all 0.25s ease;
     }
 
-    .school-glass-card:hover {
-      transform: translateY(-3px) scale(1.02);
-      border-color: var(--card-glow, rgba(129, 140, 248, 0.65));
-      box-shadow: 0 8px 30px var(--card-shadow, rgba(91, 108, 249, 0.22));
+    .school-badge-card:hover {
+      border-color: var(--glow-c, rgba(129, 140, 248, 0.65));
+      box-shadow: 0 0 28px var(--glow-s, rgba(99, 102, 241, 0.24));
+      transform: translateY(-2px);
     }
 
-    .school-initials-box {
+    .school-code-pill {
       width: 42px;
       height: 42px;
-      border-radius: 11px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 0.8rem;
-      letter-spacing: 0.02em;
+      font-size: 0.78rem;
+      background: var(--bg-c);
+      border: 1px solid var(--bd-c);
+      color: var(--tx-c);
+      box-shadow: 0 0 16px var(--bg-c);
       flex-shrink: 0;
-      background: var(--badge-bg, rgba(91, 108, 249, 0.18));
-      border: 1px solid var(--badge-border, rgba(129, 140, 248, 0.4));
-      color: var(--badge-text, #a5b4fc);
     }
 
-    .school-meta {
+    .school-names {
       display: flex;
       flex-direction: column;
       line-height: 1.28;
     }
 
-    .school-meta strong {
-      font-size: 0.95rem;
+    .school-names strong {
+      font-size: 0.94rem;
       font-weight: 800;
       color: #ffffff;
     }
 
-    .school-meta span {
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.5);
+    .school-names span {
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.48);
       white-space: nowrap;
     }
 
     /* ==========================================================================
-       5. "THE SMARTER WAY" FEATURES SECTION (00:56 - 01:28)
+       5. FEATURES SECTION: "THE SMARTER WAY" (01:26 - 02:00 & 03:28 - 03:45)
        ========================================================================== */
-    .smarter-section {
-      padding: 84px 48px 96px;
-      max-width: 1220px;
+    .features-container {
+      max-width: 1120px;
       margin: 0 auto;
-      position: relative;
-      z-index: 2;
+      padding: 88px 32px 72px;
     }
 
-    .smarter-eyebrow {
-      font-size: 0.75rem;
+    .eyebrow-purple {
+      font-size: 0.74rem;
       font-weight: 800;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #818cf8;
-      margin-bottom: 16px;
       display: block;
+      margin-bottom: 16px;
     }
 
-    .smarter-display-heading {
+    .wide-section-title {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(2.45rem, 4.7vw, 3.85rem);
-      line-height: 1.08;
-      letter-spacing: -0.035em;
+      font-size: clamp(2.4rem, 4.5vw, 3.65rem);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
       color: #ffffff;
-      max-width: 720px;
       margin-bottom: 20px;
+      transform: scaleX(1.04);
+      transform-origin: left center;
     }
 
-    .smarter-subcopy {
-      font-size: 1.05rem;
-      line-height: 1.6;
+    .section-lead-copy {
+      font-size: 1.04rem;
+      line-height: 1.62;
       color: var(--text-secondary);
-      max-width: 500px;
-      margin-bottom: 56px;
+      max-width: 510px;
+      margin-bottom: 52px;
     }
 
-    .features-two-col-grid {
+    .features-grid-6 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 64px;
-      row-gap: 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.09);
     }
 
-    .feature-row-item {
+    .f-item-row {
       display: flex;
       align-items: flex-start;
       gap: 24px;
-      padding: 34px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 32px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .feature-index-num {
-      font-size: 0.82rem;
+    .f-item-num {
+      font-size: 0.78rem;
       font-weight: 700;
-      color: rgba(255, 255, 255, 0.35);
+      color: rgba(129, 140, 248, 0.65);
       padding-top: 4px;
       min-width: 24px;
-      font-variant-numeric: tabular-nums;
     }
 
-    .feature-row-body h3 {
-      font-size: 1.18rem;
+    .f-item-content h3 {
+      font-family: var(--font-sans);
+      font-size: 1.15rem;
       font-weight: 800;
       color: #ffffff;
       margin-bottom: 8px;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.015em;
     }
 
-    .feature-row-body p {
-      font-size: 0.94rem;
+    .f-item-content p {
+      font-size: 0.93rem;
       line-height: 1.6;
       color: var(--text-secondary);
     }
 
     /* ==========================================================================
-       6. GIANT "90%" STATISTIC SECTION (01:28 - 01:38)
+       6. GIANT HALF-HIDDEN "90%" SECTION (02:33 - 03:02)
        ========================================================================== */
-    .stat-ninety-section {
-      padding: 72px 48px 90px;
-      max-width: 1220px;
+    .ninety-section {
+      max-width: 1120px;
       margin: 0 auto;
+      padding: 56px 32px 84px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
       position: relative;
-      z-index: 2;
     }
 
-    .giant-ninety-number {
+    .ninety-giant-figure {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(5.5rem, 13.5vw, 10.8rem);
-      line-height: 0.92;
-      letter-spacing: -0.04em;
-      background: linear-gradient(180deg, #c7d2fe 0%, #818cf8 52%, #4338ca 100%);
+      font-size: clamp(6.5rem, 15.5vw, 12.8rem);
+      line-height: 0.86;
+      letter-spacing: -0.05em;
+      transform: scaleX(1.07);
+      transform-origin: left top;
+      background: linear-gradient(180deg, #93a5fb 0%, #6366f1 42%, rgba(49, 46, 129, 0.08) 92%, transparent 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      display: inline-block;
-      margin-bottom: 14px;
-      filter: drop-shadow(0 16px 45px rgba(79, 70, 229, 0.28));
+      user-select: none;
+      pointer-events: none;
+      position: relative;
+      z-index: 1;
     }
 
-    .stat-ninety-title {
+    /* Overlaps the bottom half of 90% just like 02:36 - 02:53 */
+    .ninety-overlap-box {
+      position: relative;
+      z-index: 2;
+      margin-top: clamp(-4.8rem, -6.5vw, -3.2rem);
+    }
+
+    .ninety-overlap-box h3 {
       font-family: var(--font-sans);
       font-weight: 800;
-      font-size: clamp(1.65rem, 2.8vw, 2.25rem);
-      line-height: 1.18;
+      font-size: clamp(1.75rem, 3vw, 2.35rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
       color: #ffffff;
       margin-bottom: 14px;
-      letter-spacing: -0.02em;
     }
 
-    .stat-ninety-sub {
-      font-size: 1rem;
-      line-height: 1.6;
+    .ninety-overlap-box p {
+      font-size: 0.98rem;
+      line-height: 1.62;
       color: var(--text-secondary);
-      max-width: 480px;
+      max-width: 490px;
     }
 
     /* ==========================================================================
-       7. "WORK SMART. PASS STRONG." BOTTOM CTA SECTION (01:40 - 01:54)
+       7. "WORK SMART. PASS STRONG." SECTION (03:04 - 03:22, with clipped 'g')
        ========================================================================== */
-    .bottom-cta-section {
-      padding: 70px 48px 96px;
-      max-width: 1220px;
+    .pass-strong-section {
+      max-width: 1120px;
       margin: 0 auto;
+      padding: 84px 32px 96px;
+      position: relative;
+    }
+
+    .pass-strong-ambient {
+      position: absolute;
+      left: 48%;
+      bottom: 8%;
+      transform: translateX(-50%);
+      width: 580px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.25) 0%, rgba(59, 130, 246, 0.09) 50%, transparent 72%);
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .pass-strong-inner {
       position: relative;
       z-index: 2;
     }
 
-    .bottom-cta-glow {
-      position: absolute;
-      right: 10%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 540px;
-      height: 540px;
-      background: radial-gradient(circle, rgba(79, 70, 229, 0.22) 0%, rgba(59, 130, 246, 0.08) 48%, transparent 72%);
-      filter: blur(55px);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .bottom-cta-heading {
+    /* Exact tight baseline crop on the 'g' descender in "Pass strong." (03:08) */
+    .pass-strong-heading {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(2.5rem, 4.8vw, 3.9rem);
-      line-height: 1.08;
-      letter-spacing: -0.035em;
+      font-size: clamp(2.4rem, 4.6vw, 3.7rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
       color: #ffffff;
-      margin-bottom: 18px;
+      transform: scaleX(1.05);
+      transform-origin: left center;
+      overflow: hidden;
+      padding-bottom: 1px;
+      margin-bottom: 20px;
     }
 
-    .bottom-cta-sub {
-      font-size: 1.04rem;
+    .pass-strong-sub {
+      font-size: 1.02rem;
       line-height: 1.6;
       color: var(--text-secondary);
       max-width: 470px;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     /* ==========================================================================
-       8. EXACT SITE FOOTER (01:50 - 01:54)
+       8. DEDICATED FULL-PAGE "ABOUT" VIEW (Exact match to 03:56 - 04:28)
        ========================================================================== */
-    .chkela-footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 44px 48px 52px;
-      max-width: 1220px;
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 24px;
+    .about-page-view {
+      display: none;
+      padding: 136px 32px 60px;
+      min-height: 85vh;
     }
 
-    .footer-left-col .footer-logo {
+    .about-center-column {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .about-main-heading {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: 1.25rem;
+      font-size: clamp(2.35rem, 4.4vw, 3.55rem);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
       color: #ffffff;
+      transform: scaleX(1.04);
+      transform-origin: left center;
+      margin-bottom: 22px;
+    }
+
+    .about-intro-p {
+      font-size: 1.06rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 44px;
+      max-width: 680px;
+    }
+
+    .about-block-row {
+      padding: 28px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .about-block-row h3 {
+      font-family: var(--font-sans);
+      font-size: 1.16rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .about-block-row p {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .about-block-row a {
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .about-bottom-cta {
+      padding-top: 36px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 8px;
+    }
+
+    .about-bottom-cta h2 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.75rem, 3.1vw, 2.45rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      transform: scaleX(1.04);
+      transform-origin: left center;
+      margin-bottom: 22px;
+    }
+
+    /* ==========================================================================
+       9. FULL-SCREEN BLACK LOADING SHIMMER & LOGIN VIEW (04:28 - 05:02)
+       ========================================================================== */
+    .login-loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: radial-gradient(circle at 50% 80%, #111836 0%, #04060e 70%);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shimmer-bar {
+      width: 170px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .shimmer-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      animation: slideShimmer 0.75s ease-in-out infinite;
+    }
+
+    @keyframes slideShimmer {
+      0% { left: -60%; }
+      100% { left: 110%; }
+    }
+
+    .login-page-view {
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      background: radial-gradient(circle at 50% 88%, rgba(29, 40, 88, 0.42) 0%, #050711 68%);
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 92px 24px 36px;
+      overflow-y: auto;
+    }
+
+    .login-box-top {
+      width: 100%;
+      max-width: 470px;
+    }
+
+    .login-title-logo {
+      font-family: var(--font-sans);
+      font-weight: 900;
+      font-size: 2.35rem;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 10px;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .login-sub-text {
+      font-size: 0.96rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 34px;
+    }
+
+    .login-phone-label {
       display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
       margin-bottom: 8px;
     }
 
-    .footer-left-col p {
-      font-size: 0.84rem;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.45);
-      max-width: 240px;
-    }
-
-    .footer-right-links {
+    .login-phone-field {
       display: flex;
       align-items: center;
-      gap: 28px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .login-phone-field:focus-within {
+      border-color: rgba(139, 156, 247, 0.65);
+      background: rgba(255, 255, 255, 0.17);
+    }
+
+    .country-prefix {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-right: 16px;
+      user-select: none;
+    }
+
+    .login-phone-field input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+      width: 100%;
+    }
+
+    .login-phone-field input::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .login-terms-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.88);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .login-terms-row input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: #ffffff;
+      border: 2px solid #ffffff;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .login-terms-row input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 900;
+      color: #050711;
+    }
+
+    .login-terms-row a {
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .login-bottom-bar {
+      width: 100%;
+      max-width: 470px;
+      margin-top: 40px;
+    }
+
+    .login-continue-btn {
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 14px;
+      border: none;
+      background: #2b3563;
+      color: rgba(255, 255, 255, 0.88);
+      font-family: var(--font-sans);
+      font-size: 0.96rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .login-continue-btn.ready {
+      background: #4f5f9e;
+      color: #ffffff;
+      box-shadow: 0 8px 26px rgba(79, 95, 158, 0.35);
+    }
+
+    .login-continue-btn:hover {
+      background: #3b4880;
+    }
+
+    /* ==========================================================================
+       10. FOOTER (Exact match to 03:18 - 03:22 & 04:20)
+       ========================================================================== */
+    .site-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 40px max(32px, calc((100vw - 1120px) / 2)) 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-brand-col .footer-wordmark {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.18rem;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      display: inline-block;
+      transform: scaleX(1.05);
+      transform-origin: left center;
+      margin-bottom: 6px;
+    }
+
+    .footer-brand-col .footer-wordmark span {
+      color: #6366f1;
+    }
+
+    .footer-brand-col p {
+      font-size: 0.82rem;
+      line-height: 1.48;
+      color: rgba(255, 255, 255, 0.45);
+      max-width: 220px;
+    }
+
+    .footer-links-row {
+      display: flex;
+      align-items: center;
+      gap: 26px;
       flex-wrap: wrap;
     }
 
-    .footer-right-links a {
-      font-size: 0.84rem;
-      color: rgba(255, 255, 255, 0.58);
+    .footer-links-row a {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.62);
       text-decoration: none;
       transition: color 0.2s ease;
     }
 
-    .footer-right-links a:hover {
+    .footer-links-row a:hover {
       color: #ffffff;
     }
 
     /* ==========================================================================
-       9. MODALS FOR LOGIN, GIFT CLAIM, ABOUT & NATURAL SCIENCES ENGINE
+       11. CLAIM YOUR GIFT MODAL
        ========================================================================== */
-    .modal-overlay {
+    .gift-modal-backdrop {
       position: fixed;
       inset: 0;
-      z-index: 2000;
-      background: rgba(3, 4, 10, 0.82);
-      backdrop-filter: blur(14px);
+      z-index: 2800;
+      background: rgba(3, 5, 12, 0.82);
+      backdrop-filter: blur(12px);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 20px;
     }
 
-    .modal-overlay.open {
+    .gift-modal-backdrop.show {
       display: flex;
     }
 
-    .modal-glass-box {
-      background: #0d1124;
-      border: 1px solid rgba(129, 140, 248, 0.28);
-      border-radius: 24px;
+    .gift-modal-card {
+      background: #0d1122;
+      border: 1px solid rgba(245, 158, 11, 0.38);
+      border-radius: 22px;
       width: 100%;
-      max-width: 480px;
-      padding: 32px;
+      max-width: 430px;
+      padding: 28px;
       position: relative;
-      box-shadow: 0 28px 75px rgba(0, 0, 0, 0.85);
-      max-height: 90vh;
-      overflow-y: auto;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85);
     }
 
-    .modal-glass-box.wide-modal {
-      max-width: 860px;
-    }
-
-    .modal-close-x {
+    .gift-close-btn {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
+      top: 18px;
+      right: 18px;
+      background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.05);
       color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
       cursor: pointer;
-      font-size: 0.95rem;
     }
 
-    .modal-title {
-      font-family: var(--font-display);
-      font-size: 1.45rem;
-      margin-bottom: 8px;
+    .gift-input-group {
+      margin-bottom: 14px;
     }
 
-    .modal-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-bottom: 22px;
-    }
-
-    .field-block {
-      margin-bottom: 16px;
-    }
-
-    .field-block label {
+    .gift-input-group label {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.76rem;
       font-weight: 700;
-      color: rgba(255, 255, 255, 0.78);
+      color: rgba(255, 255, 255, 0.68);
       margin-bottom: 6px;
     }
 
-    .field-block input,
-    .field-block select {
+    .gift-input-group input {
       width: 100%;
       padding: 13px 15px;
-      border-radius: 12px;
+      border-radius: 11px;
       border: 1px solid rgba(255, 255, 255, 0.14);
-      background: #060813;
+      background: #060812;
       color: #ffffff;
       font-family: var(--font-sans);
       font-size: 0.94rem;
     }
 
-    .primary-action-btn {
+    .gift-submit-btn {
       width: 100%;
-      padding: 14px 22px;
+      padding: 14px;
       border-radius: 999px;
       border: none;
-      background: linear-gradient(135deg, #5b6cf9 0%, #4f46e5 100%);
-      color: #ffffff;
-      font-family: var(--font-sans);
-      font-weight: 700;
-      font-size: 0.95rem;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #080a14;
+      font-weight: 800;
+      font-size: 0.94rem;
       cursor: pointer;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
-    /* Natural Sciences Drill Cards inside Modal */
-    .drill-option-btn {
-      width: 100%;
-      text-align: left;
-      padding: 13px 16px;
-      margin-bottom: 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.04);
-      color: #ffffff;
-      font-size: 0.92rem;
-      cursor: pointer;
-      transition: all 0.18s ease;
-    }
-
-    .drill-option-btn:hover {
-      border-color: #818cf8;
-      background: rgba(91, 108, 249, 0.14);
-    }
-
-    .drill-option-btn.correct {
-      border-color: #10b981;
-      background: rgba(16, 185, 129, 0.22);
-    }
-
-    .drill-option-btn.wrong {
-      border-color: #ef4444;
-      background: rgba(239, 68, 68, 0.22);
-    }
-
-    .solution-callout {
-      margin-top: 14px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: rgba(16, 185, 129, 0.1);
-      border-left: 3px solid #10b981;
-      font-size: 0.88rem;
-      line-height: 1.55;
-      display: none;
-    }
-
-    .contrib-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .contrib-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 18px;
-    }
-
-    .contrib-card.lead-highlight {
-      border-color: rgba(129, 140, 248, 0.55);
-      background: linear-gradient(145deg, rgba(91, 108, 249, 0.14), rgba(15, 19, 38, 0.85));
-    }
-
-    @media (max-width: 980px) {
-      .site-navbar { padding: 16px 22px; }
-      .hero-wrapper { padding: 110px 22px 56px; }
-      .hero-container { grid-template-columns: 1fr; text-align: left; }
-      .features-two-col-grid { grid-template-columns: 1fr; }
-      .smarter-section, .stat-ninety-section, .bottom-cta-section, .chkela-footer { padding-left: 22px; padding-right: 22px; }
-      .contrib-grid { grid-template-columns: 1fr; }
+    @media (max-width: 960px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .features-grid-6 {
+        grid-template-columns: 1fr;
+      }
+      .chkela-navbar {
+        padding: 0 18px;
+      }
+      .nav-item-btn {
+        padding: 8px 13px;
+        font-size: 0.82rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- ==========================================================================
-       STICKY NAVBAR (Chkela. | Home Features About | Log in)
+       STICKY TOP NAVBAR (Chkela. | Home Features About | Log in)
        ========================================================================== -->
-  <header class="site-navbar">
-    <a href="#top" class="brand-logo-text" onclick="setActiveNav('home')">
-      Chkela<span class="brand-dot">.</span>
+  <header class="chkela-navbar" id="mainNavbar">
+    <a href="#/" class="nav-brand" onclick="navigateHome(event)">
+      Chkela<span class="purple-dot">.</span>
     </a>
 
-    <div class="nav-right-cluster">
-      <nav class="nav-pill-group" aria-label="Primary Navigation">
-        <button class="nav-pill-link active" id="nav-home" onclick="setActiveNav('home'); window.scrollTo({top:0, behavior:'smooth'})">Home</button>
-        <button class="nav-pill-link" id="nav-features" onclick="setActiveNav('features'); document.getElementById('features').scrollIntoView({behavior:'smooth'})">Features</button>
-        <button class="nav-pill-link" id="nav-about" onclick="setActiveNav('about'); openModal('aboutModal')">About</button>
-      </nav>
-      <button class="nav-login-btn" id="topLoginBtn" onclick="openModal('loginModal')">Log in</button>
+    <div class="nav-right">
+      <button class="nav-item-btn active" id="navBtnHome" onclick="navigateHome(event)">Home</button>
+      <button class="nav-item-btn" id="navBtnFeatures" onclick="navigateFeatures(event)">Features</button>
+      <button class="nav-item-btn" id="navBtnAbout" onclick="navigateAbout(event)">About</button>
+      <button class="nav-login-pill" onclick="triggerLoginTransition()">Log in</button>
     </div>
   </header>
 
   <!-- ==========================================================================
-       HERO SECTION (Chkela. Study smarter. Not harder. + 9:41 iPhone Mockup)
+       VIEW 1: HOME + FEATURES PAGE
        ========================================================================== -->
-  <section class="hero-wrapper" id="top">
-    <canvas id="orbitalCanvas"></canvas>
-    <div class="hero-ambient-glow"></div>
+  <main id="homePageView">
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="heroTop">
+      <canvas id="heroVortexCanvas"></canvas>
 
-    <div class="hero-container">
-      <!-- Left Hero Copy -->
-      <div class="hero-left">
-        <h1 class="hero-display-brand">Chkela<span class="big-dot">.</span></h1>
-        <h2 class="hero-tagline">
-          Study smarter.<br />
-          Not harder.
+      <div class="hero-inner">
+        <!-- Left Copy -->
+        <div class="hero-copy-col">
+          <h1 class="hero-giant-logo">Chkela<span class="hero-dot">.</span></h1>
+          <h2 class="hero-sub-headline">
+            Study smarter.<br />
+            Not harder.
+          </h2>
+          <p class="hero-lead-paragraph">
+            Stop grinding random notes for hours. Chkela shows what actually moves your matric score — then helps you practice it.
+          </p>
+
+          <div class="store-pills-row">
+            <a href="https://apps.apple.com/us/app/chkela/id6738397728" target="_blank" rel="noopener" class="store-pill-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.64-.78 1.08-1.86.96-2.94-.93.04-2.06.62-2.72 1.4-.58.68-1.1 1.79-.96 2.84 1.04.08 2.08-.52 2.72-1.3z"/></svg>
+              <span>App Store</span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.chkela.v1" target="_blank" rel="noopener" class="store-pill-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+              <span>Google Play</span>
+            </a>
+          </div>
+
+          <button class="gift-trigger-btn" onclick="openGiftModal()">
+            <div class="cg-icon-box">CG</div>
+            <div class="cg-copy">
+              <strong>Claim your gift</strong>
+              <span>Enter your code &amp; phone</span>
+            </div>
+            <span class="cg-arrow-icon">→</span>
+          </button>
+
+          <span class="free-caption">Free on App Store &amp; Google Play</span>
+        </div>
+
+        <!-- Right Floating iPhone Mockup -->
+        <div class="hero-phone-col">
+          <div class="iphone-frame">
+            <div class="iphone-inner-screen">
+              <div class="phone-top-bar">
+                <span>9:41</span>
+                <div class="phone-notch-pill"></div>
+                <div class="phone-signal-icons">
+                  <span>5G</span>
+                  <span>▮▮▮</span>
+                </div>
+              </div>
+
+              <div class="phone-app-head">
+                <div class="phone-logo-group">
+                  <div class="phone-wave-icon">
+                    <svg viewBox="0 0 32 32" fill="none">
+                      <path d="M23 10C19 6.5 12 7.5 9.5 12.8C7 18 10.8 24 17 24.5C21 24.8 23.8 22.8 24.8 20.5" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                      <path d="M14.2 14.8C16.5 12.6 20.5 13.5 21.6 16.5" stroke="#a5b4fc" stroke-width="2.6" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div class="phone-title-stack">
+                    <strong>Chkela</strong>
+                    <span>Smarter matric prep</span>
+                  </div>
+                </div>
+                <span class="phone-focus-tag">FOCUS</span>
+              </div>
+
+              <div class="phone-chips-row">
+                <span class="p-chip active-weak">Weak: Physics</span>
+                <span class="p-chip passive">Math</span>
+                <span class="p-chip passive">Biology</span>
+              </div>
+
+              <div class="phone-messages">
+                <div class="p-msg left-dark">
+                  You're missing marks on Newton's laws. Want a 5-question drill?
+                </div>
+                <div class="p-msg right-indigo">
+                  Yes — past paper style
+                </div>
+                <div class="p-msg left-dark">
+                  Done. 5 questions from recent NEAEA papers. Finish these before revisiting notes.
+                </div>
+              </div>
+
+              <div class="phone-bottom-prompt">
+                <span>What should I practice next?</span>
+                <div class="phone-play-btn">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHOOLS MARQUEE SECTION -->
+    <section class="schools-strip">
+      <p class="schools-strip-title">OUR STUDENTS COME FROM THESE SCHOOLS</p>
+
+      <div class="marquee-window">
+        <div class="marquee-track">
+          <!-- Set 1 -->
+          <div class="school-badge-card" style="--bg-c:rgba(99,102,241,0.2);--bd-c:rgba(129,140,248,0.48);--tx-c:#c7d2fe;">
+            <div class="school-code-pill">SF</div>
+            <div class="school-names"><strong>Sandford</strong><span>Sandford International School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(59,130,246,0.2);--bd-c:rgba(96,165,250,0.48);--tx-c:#93c5fd;">
+            <div class="school-code-pill">ICS</div>
+            <div class="school-names"><strong>ICS Addis</strong><span>International Community School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(217,119,6,0.22);--bd-c:rgba(251,191,36,0.5);--tx-c:#fde68a;">
+            <div class="school-code-pill">NZ</div>
+            <div class="school-names"><strong>Nazareth</strong><span>Nazareth School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(124,58,237,0.2);--bd-c:rgba(167,139,250,0.48);--tx-c:#ddd6fe;">
+            <div class="school-code-pill">SJ</div>
+            <div class="school-names"><strong>St. Joseph</strong><span>St. Joseph School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(225,29,72,0.2);--bd-c:rgba(251,113,133,0.48);--tx-c:#fecdd3;">
+            <div class="school-code-pill">LGM</div>
+            <div class="school-names"><strong>LGM</strong><span>Lycée Guébré-Mariam</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(234,88,12,0.2);--bd-c:rgba(251,146,60,0.48);--tx-c:#fed7aa;">
+            <div class="school-code-pill">BA</div>
+            <div class="school-names"><strong>Bingham</strong><span>Bingham Academy</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(16,185,129,0.2);--bd-c:rgba(52,211,153,0.48);--tx-c:#a7f3d0;">
+            <div class="school-code-pill">AD</div>
+            <div class="school-names"><strong>Andinet</strong><span>Andinet International School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(139,92,246,0.2);--bd-c:rgba(196,181,253,0.48);--tx-c:#ede9fe;">
+            <div class="school-code-pill">EP</div>
+            <div class="school-names"><strong>Ethio Parents</strong><span>Ethio Parents' School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(14,165,233,0.2);--bd-c:rgba(56,189,248,0.48);--tx-c:#bae6fd;">
+            <div class="school-code-pill">SOT</div>
+            <div class="school-names"><strong>SOT</strong><span>School of Tomorrow</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(34,197,94,0.2);--bd-c:rgba(74,222,128,0.48);--tx-c:#bbf7d0;">
+            <div class="school-code-pill">OP</div>
+            <div class="school-names"><strong>One Planet</strong><span>One Planet International</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(99,102,241,0.2);--bd-c:rgba(165,180,252,0.48);--tx-c:#e0e7ff;">
+            <div class="school-code-pill">BIS</div>
+            <div class="school-names"><strong>BIS Addis</strong><span>British International School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(245,158,11,0.2);--bd-c:rgba(251,191,36,0.48);--tx-c:#fef08a;">
+            <div class="school-code-pill">GY</div>
+            <div class="school-names"><strong>Gibson</strong><span>Gibson Youth Academy</span></div>
+          </div>
+
+          <!-- Set 2 (Duplicate for seamless infinite scroll) -->
+          <div class="school-badge-card" style="--bg-c:rgba(99,102,241,0.2);--bd-c:rgba(129,140,248,0.48);--tx-c:#c7d2fe;">
+            <div class="school-code-pill">SF</div>
+            <div class="school-names"><strong>Sandford</strong><span>Sandford International School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(59,130,246,0.2);--bd-c:rgba(96,165,250,0.48);--tx-c:#93c5fd;">
+            <div class="school-code-pill">ICS</div>
+            <div class="school-names"><strong>ICS Addis</strong><span>International Community School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(217,119,6,0.22);--bd-c:rgba(251,191,36,0.5);--tx-c:#fde68a;">
+            <div class="school-code-pill">NZ</div>
+            <div class="school-names"><strong>Nazareth</strong><span>Nazareth School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(124,58,237,0.2);--bd-c:rgba(167,139,250,0.48);--tx-c:#ddd6fe;">
+            <div class="school-code-pill">SJ</div>
+            <div class="school-names"><strong>St. Joseph</strong><span>St. Joseph School</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(225,29,72,0.2);--bd-c:rgba(251,113,133,0.48);--tx-c:#fecdd3;">
+            <div class="school-code-pill">LGM</div>
+            <div class="school-names"><strong>LGM</strong><span>Lycée Guébré-Mariam</span></div>
+          </div>
+
+          <div class="school-badge-card" style="--bg-c:rgba(234,88,12,0.2);--bd-c:rgba(251,146,60,0.48);--tx-c:#fed7aa;">
+            <div class="school-code-pill">BA</div>
+            <div class="school-names"><strong>Bingham</strong><span>Bingham Academy</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION ("THE SMARTER WAY") -->
+    <section class="features-container" id="features">
+      <span class="eyebrow-purple">THE SMARTER WAY</span>
+      <h2 class="wide-section-title">
+        Less wasted<br />
+        time. More<br />
+        marks.
+      </h2>
+      <p class="section-lead-copy">
+        Every tool in Chkela is built around one idea: put your energy where it counts for exam day.
+      </p>
+
+      <div class="features-grid-6">
+        <div class="f-item-row">
+          <span class="f-item-num">01</span>
+          <div class="f-item-content">
+            <h3>Practice what the exam actually asks</h3>
+            <p>Drill real NEAEA and Grade 12 past papers — so your time goes into the question styles that show up on exam day.</p>
+          </div>
+        </div>
+
+        <div class="f-item-row">
+          <span class="f-item-num">02</span>
+          <div class="f-item-content">
+            <h3>Fix weak spots, skip the rest</h3>
+            <p>See which topics are costing you marks. Double down there instead of re-reading chapters you've already got.</p>
+          </div>
+        </div>
+
+        <div class="f-item-row">
+          <span class="f-item-num">03</span>
+          <div class="f-item-content">
+            <h3>Short drills that compound</h3>
+            <p>Daily quizzes keep what you learned from slipping away — so progress sticks without marathon cram sessions.</p>
+          </div>
+        </div>
+
+        <div class="f-item-row">
+          <span class="f-item-num">04</span>
+          <div class="f-item-content">
+            <h3>Get unstuck in seconds</h3>
+            <p>When a concept won't click, ask the in-app tutor and move on. No more losing an evening to one confusing paragraph.</p>
+          </div>
+        </div>
+
+        <div class="f-item-row">
+          <span class="f-item-num">05</span>
+          <div class="f-item-content">
+            <h3>Notes built for revision</h3>
+            <p>Clear, syllabus-aligned study notes you can open before a quiz or the night before the paper — not a pile of random PDFs.</p>
+          </div>
+        </div>
+
+        <div class="f-item-row">
+          <span class="f-item-num">06</span>
+          <div class="f-item-content">
+            <h3>Stay accountable with peers</h3>
+            <p>Study rooms keep you consistent. Share problems, compare approaches, and keep the pace when motivation dips.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIANT HALF-HIDDEN 90% SECTION -->
+    <section class="ninety-section">
+      <div class="ninety-giant-figure">90%</div>
+      <div class="ninety-overlap-box">
+        <h3>
+          of Chkela students<br />
+          passed matric last year.
+        </h3>
+        <p>
+          Not because they studied longer — because they studied the right things, with feedback that made every session count.
+        </p>
+      </div>
+    </section>
+
+    <!-- WORK SMART. PASS STRONG. -->
+    <section class="pass-strong-section">
+      <div class="pass-strong-ambient"></div>
+      <div class="pass-strong-inner">
+        <h2 class="pass-strong-heading">
+          Work smart.<br />
+          Pass strong.
         </h2>
-        <p class="hero-description">
-          Stop grinding random notes for hours. Chkela shows what actually moves your matric score — then helps you practice it.
+        <p class="pass-strong-sub">
+          Download Chkela and turn your next study block into progress you can measure — not hours you can't get back.
         </p>
 
-        <div class="store-buttons-row">
-          <a href="https://apps.apple.com/us/app/chkela/id6738397728" target="_blank" rel="noopener" class="store-white-pill">
+        <div class="store-pills-row">
+          <a href="https://apps.apple.com/us/app/chkela/id6738397728" target="_blank" rel="noopener" class="store-pill-btn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.64-.78 1.08-1.86.96-2.94-.93.04-2.06.62-2.72 1.4-.58.68-1.1 1.79-.96 2.84 1.04.08 2.08-.52 2.72-1.3z"/></svg>
             <span>App Store</span>
           </a>
-          <a href="https://play.google.com/store/apps/details?id=com.chkela.v1" target="_blank" rel="noopener" class="store-white-pill">
+          <a href="https://play.google.com/store/apps/details?id=com.chkela.v1" target="_blank" rel="noopener" class="store-pill-btn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
             <span>Google Play</span>
           </a>
         </div>
 
-        <button class="claim-gift-pill" onclick="openModal('giftModal')">
-          <div class="cg-badge">CG</div>
-          <div class="cg-text">
+        <button class="gift-trigger-btn" onclick="openGiftModal()">
+          <div class="cg-icon-box">CG</div>
+          <div class="cg-copy">
             <strong>Claim your gift</strong>
             <span>Enter your code &amp; phone</span>
           </div>
-          <span class="cg-arrow">→</span>
+          <span class="cg-arrow-icon">→</span>
         </button>
+      </div>
+    </section>
+  </main>
 
-        <span class="hero-micro-caption">Free on App Store &amp; Google Play</span>
+  <!-- ==========================================================================
+       VIEW 2: FULL DEDICATED "ABOUT CHKELA" PAGE (Exact match to 03:56 - 04:28)
+       ========================================================================== -->
+  <section class="about-page-view" id="aboutPageView">
+    <div class="about-center-column">
+      <span class="eyebrow-purple">ABOUT CHKELA</span>
+      <h1 class="about-main-heading">
+        Smarter prep for<br />
+        the exam that<br />
+        matters.
+      </h1>
+      <p class="about-intro-p">
+        Matric is high stakes. Grinding harder isn't a strategy. Chkela helps Ethiopian Grade 12 students study with focus — real past papers, clear feedback, and tools that turn limited time into real score gains.
+      </p>
+
+      <div class="about-block-row">
+        <h3>Why smarter beats harder</h3>
+        <p>
+          Most students already work hard. What's missing is direction: which topics matter, which questions match the exam, and how to spend the next hour so it actually raises the mark. Chkela was built to answer that — every session.
+        </p>
       </div>
 
-      <!-- Right Hero Phone Mockup -->
-      <div class="hero-right">
-        <div class="iphone-shell">
-          <div class="iphone-screen">
-            <div class="iphone-statusbar">
-              <span>9:41</span>
-              <div class="dynamic-island"></div>
-              <div class="status-Utility-icons">
-                <span>5G</span>
-                <span>▮▮▮</span>
-              </div>
-            </div>
+      <div class="about-block-row">
+        <h3>What we put in your hands</h3>
+        <p>
+          Past papers that mirror exam day. Analytics that surface weak spots. Short daily practice that sticks. Notes aligned to the syllabus. And help when you're stuck — so you keep moving instead of spinning.
+        </p>
+      </div>
 
-            <div class="phone-header-row">
-              <div class="phone-brand-cluster">
-                <div class="phone-app-icon">
-                  <svg viewBox="0 0 32 32" fill="none">
-                    <path d="M22.5 9.5C18.5 6.5 12 7.5 9.5 12.5C7 17.5 10.5 23.5 16.5 24.5C20.5 25 23.5 23 24.5 21" stroke="white" stroke-width="3.4" stroke-linecap="round"/>
-                    <path d="M14 14.5C16.5 12.5 20.5 13.5 21.5 16.5" stroke="#93c5fd" stroke-width="2.6" stroke-linecap="round"/>
-                  </svg>
-                </div>
-                <div class="phone-brand-titles">
-                  <strong>Chkela</strong>
-                  <span>Smarter matric prep</span>
-                </div>
-              </div>
-              <span class="focus-pill-badge">FOCUS</span>
-            </div>
+      <div class="about-block-row">
+        <h3>Built in Ethiopia</h3>
+        <p>
+          Made for Ethiopian students, schools, and families who care about results. If you want more learners preparing with focus — not burnout — we'd love to talk.
+        </p>
+      </div>
 
-            <div class="phone-subject-chips">
-              <span class="subject-chip weak-active" onclick="openDrillModal('Physics')">Weak: Physics</span>
-              <span class="subject-chip muted-chip" onclick="openDrillModal('Mathematics')">Math</span>
-              <span class="subject-chip muted-chip" onclick="openDrillModal('Biology')">Biology</span>
-            </div>
+      <div class="about-block-row">
+        <h3>Get in touch</h3>
+        <p>
+          Email <a href="mailto:contact@chkela.com">contact@chkela.com</a> or call <a href="tel:+251947819388">+251 947 819 388</a>.
+        </p>
+      </div>
 
-            <div class="phone-chat-area" id="phoneChatArea">
-              <div class="phone-bubble tutor-left">
-                You're missing marks on Newton's laws. Want a 5-question drill?
-              </div>
-              <div class="phone-bubble student-right" onclick="openDrillModal('Physics')" title="Click to launch 5-question NEAEA drill">
-                Yes — past paper style
-              </div>
-              <div class="phone-bubble tutor-left">
-                Done. 5 questions from recent NEAEA papers. Finish these before revisiting notes.
-              </div>
-            </div>
+      <div class="about-bottom-cta">
+        <h2>
+          Start studying smarter<br />
+          today.
+        </h2>
 
-            <div class="phone-input-bar" onclick="openDrillModal('Physics')">
-              <span class="phone-input-placeholder">What should I practice next?</span>
-              <button class="phone-send-circle" aria-label="Start Drill">↑</button>
-            </div>
+        <div class="store-pills-row">
+          <a href="https://apps.apple.com/us/app/chkela/id6738397728" target="_blank" rel="noopener" class="store-pill-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.64-.78 1.08-1.86.96-2.94-.93.04-2.06.62-2.72 1.4-.58.68-1.1 1.79-.96 2.84 1.04.08 2.08-.52 2.72-1.3z"/></svg>
+            <span>App Store</span>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.chkela.v1" target="_blank" rel="noopener" class="store-pill-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
+            <span>Google Play</span>
+          </a>
+        </div>
+
+        <button class="gift-trigger-btn" onclick="openGiftModal()">
+          <div class="cg-icon-box">CG</div>
+          <div class="cg-copy">
+            <strong>Claim your gift</strong>
+            <span>Enter your code &amp; phone</span>
           </div>
-        </div>
+          <span class="cg-arrow-icon">→</span>
+        </button>
       </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       SCHOOLS MARQUEE SECTION (Exact 12 schools & colors from video_1.mp4)
+       SHARED SITE FOOTER (Visible on Home & About)
        ========================================================================== -->
-  <section class="schools-marquee-section">
-    <p class="schools-eyebrow">OUR STUDENTS COME FROM THESE SCHOOLS</p>
-
-    <div class="marquee-viewport">
-      <div class="marquee-rail" id="schoolsMarqueeRail">
-        <!-- Set 1 -->
-        <div class="school-glass-card" style="--badge-bg:rgba(245,158,11,0.16);--badge-border:rgba(245,158,11,0.45);--badge-text:#fbbf24;--card-glow:rgba(245,158,11,0.6);">
-          <div class="school-initials-box">GY</div>
-          <div class="school-meta"><strong>Gibson</strong><span>Gibson Youth Academy</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(99,102,241,0.18);--badge-border:rgba(129,140,248,0.45);--badge-text:#a5b4fc;--card-glow:rgba(99,102,241,0.6);">
-          <div class="school-initials-box">SF</div>
-          <div class="school-meta"><strong>Sandford</strong><span>Sandford International School</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(59,130,246,0.18);--badge-border:rgba(96,165,250,0.45);--badge-text:#93c5fd;--card-glow:rgba(59,130,246,0.6);">
-          <div class="school-initials-box">ICS</div>
-          <div class="school-meta"><strong>ICS Addis</strong><span>International Community School</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(217,119,6,0.2);--badge-border:rgba(251,191,36,0.5);--badge-text:#fcd34d;--card-glow:rgba(251,191,36,0.7);">
-          <div class="school-initials-box">NZ</div>
-          <div class="school-meta"><strong>Nazareth</strong><span>Nazareth School</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(124,58,237,0.18);--badge-border:rgba(167,139,250,0.45);--badge-text:#c4b5fd;--card-glow:rgba(139,92,246,0.6);">
-          <div class="school-initials-box">SJ</div>
-          <div class="school-meta"><strong>St. Joseph</strong><span>St. Joseph School</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(225,29,72,0.18);--badge-border:rgba(251,113,133,0.45);--badge-text:#fda4af;--card-glow:rgba(244,63,94,0.6);">
-          <div class="school-initials-box">LGM</div>
-          <div class="school-meta"><strong>LGM</strong><span>Lycée Guébré-Mariam</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(234,88,12,0.18);--badge-border:rgba(251,146,60,0.45);--badge-text:#fdba74;--card-glow:rgba(249,115,22,0.6);">
-          <div class="school-initials-box">BA</div>
-          <div class="school-meta"><strong>Bingham</strong><span>Bingham Academy</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(16,185,129,0.18);--badge-border:rgba(52,211,153,0.45);--badge-text:#6ee7b7;--card-glow:rgba(16,185,129,0.65);">
-          <div class="school-initials-box">AD</div>
-          <div class="school-meta"><strong>Andinet</strong><span>Andinet International School</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(139,92,246,0.18);--badge-border:rgba(196,181,253,0.45);--badge-text:#ddd6fe;--card-glow:rgba(139,92,246,0.6);">
-          <div class="school-initials-box">EP</div>
-          <div class="school-meta"><strong>Ethio Parents</strong><span>Ethio Parents' School</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(14,165,233,0.18);--badge-border:rgba(56,189,248,0.45);--badge-text:#7dd3fc;--card-glow:rgba(14,165,233,0.6);">
-          <div class="school-initials-box">SOT</div>
-          <div class="school-meta"><strong>SOT</strong><span>School of Tomorrow</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(34,197,94,0.18);--badge-border:rgba(74,222,128,0.45);--badge-text:#86efac;--card-glow:rgba(34,197,94,0.6);">
-          <div class="school-initials-box">OP</div>
-          <div class="school-meta"><strong>One Planet</strong><span>One Planet International</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(79,70,229,0.18);--badge-border:rgba(129,140,248,0.45);--badge-text:#a5b4fc;--card-glow:rgba(79,70,229,0.6);">
-          <div class="school-initials-box">BIS</div>
-          <div class="school-meta"><strong>BIS Addis</strong><span>British International School</span></div>
-        </div>
-
-        <!-- Set 2 (Duplicate for seamless infinite loop) -->
-        <div class="school-glass-card" style="--badge-bg:rgba(245,158,11,0.16);--badge-border:rgba(245,158,11,0.45);--badge-text:#fbbf24;--card-glow:rgba(245,158,11,0.6);">
-          <div class="school-initials-box">GY</div>
-          <div class="school-meta"><strong>Gibson</strong><span>Gibson Youth Academy</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(99,102,241,0.18);--badge-border:rgba(129,140,248,0.45);--badge-text:#a5b4fc;--card-glow:rgba(99,102,241,0.6);">
-          <div class="school-initials-box">SF</div>
-          <div class="school-meta"><strong>Sandford</strong><span>Sandford International School</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(59,130,246,0.18);--badge-border:rgba(96,165,250,0.45);--badge-text:#93c5fd;--card-glow:rgba(59,130,246,0.6);">
-          <div class="school-initials-box">ICS</div>
-          <div class="school-meta"><strong>ICS Addis</strong><span>International Community School</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(217,119,6,0.2);--badge-border:rgba(251,191,36,0.5);--badge-text:#fcd34d;--card-glow:rgba(251,191,36,0.7);">
-          <div class="school-initials-box">NZ</div>
-          <div class="school-meta"><strong>Nazareth</strong><span>Nazareth School</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(124,58,237,0.18);--badge-border:rgba(167,139,250,0.45);--badge-text:#c4b5fd;--card-glow:rgba(139,92,246,0.6);">
-          <div class="school-initials-box">SJ</div>
-          <div class="school-meta"><strong>St. Joseph</strong><span>St. Joseph School</span></div>
-        </div>
-
-        <div class="school-glass-card" style="--badge-bg:rgba(225,29,72,0.18);--badge-border:rgba(251,113,133,0.45);--badge-text:#fda4af;--card-glow:rgba(244,63,94,0.6);">
-          <div class="school-initials-box">LGM</div>
-          <div class="school-meta"><strong>LGM</strong><span>Lycée Guébré-Mariam</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       "THE SMARTER WAY" 01-06 FEATURES SECTION (Word-for-word from 00:56 - 01:28)
-       ========================================================================== -->
-  <section class="smarter-section" id="features">
-    <span class="smarter-eyebrow">THE SMARTER WAY</span>
-    <h2 class="smarter-display-heading">
-      Less wasted<br />
-      time. More<br />
-      marks.
-    </h2>
-    <p class="smarter-subcopy">
-      Every tool in Chkela is built around one idea: put your energy where it counts for exam day.
-    </p>
-
-    <div class="features-two-col-grid">
-      <div class="feature-row-item">
-        <span class="feature-index-num">01</span>
-        <div class="feature-row-body">
-          <h3>Practice what the exam actually asks</h3>
-          <p>Drill real NEAEA and Grade 12 past papers — so your time goes into the question styles that show up on exam day.</p>
-        </div>
-      </div>
-
-      <div class="feature-row-item">
-        <span class="feature-index-num">02</span>
-        <div class="feature-row-body">
-          <h3>Fix weak spots, skip the rest</h3>
-          <p>See which topics are costing you marks. Double down there instead of re-reading chapters you've already got.</p>
-        </div>
-      </div>
-
-      <div class="feature-row-item">
-        <span class="feature-index-num">03</span>
-        <div class="feature-row-body">
-          <h3>Short drills that compound</h3>
-          <p>Daily quizzes keep what you learned from slipping away — so progress sticks without marathon cram sessions.</p>
-        </div>
-      </div>
-
-      <div class="feature-row-item">
-        <span class="feature-index-num">04</span>
-        <div class="feature-row-body">
-          <h3>Get unstuck in seconds</h3>
-          <p>When a concept won't click, ask the in-app tutor and move on. No more losing an evening to one confusing paragraph.</p>
-        </div>
-      </div>
-
-      <div class="feature-row-item">
-        <span class="feature-index-num">05</span>
-        <div class="feature-row-body">
-          <h3>Notes built for revision</h3>
-          <p>Clear, syllabus-aligned study notes you can open before a quiz or the night before the paper — not a pile of random PDFs.</p>
-        </div>
-      </div>
-
-      <div class="feature-row-item">
-        <span class="feature-index-num">06</span>
-        <div class="feature-row-body">
-          <h3>Stay accountable with peers</h3>
-          <p>Study rooms keep you consistent. Share problems, compare approaches, and keep the pace when motivation dips.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       GIANT "90%" SECTION (Exact match to 01:28 - 01:38)
-       ========================================================================== -->
-  <section class="stat-ninety-section">
-    <div class="giant-ninety-number">90%</div>
-    <h3 class="stat-ninety-title">
-      of Chkela students<br />
-      passed matric last year.
-    </h3>
-    <p class="stat-ninety-sub">
-      Not because they studied longer — because they studied the right things, with feedback that made every session count.
-    </p>
-  </section>
-
-  <!-- ==========================================================================
-       "WORK SMART. PASS STRONG." BOTTOM CTA (Exact match to 01:40 - 01:54)
-       ========================================================================== -->
-  <section class="bottom-cta-section">
-    <div class="bottom-cta-glow"></div>
-    <h2 class="bottom-cta-heading">
-      Work smart.<br />
-      Pass strong.
-    </h2>
-    <p class="bottom-cta-sub">
-      Download Chkela and turn your next study block into progress you can measure — not hours you can't get back.
-    </p>
-
-    <div class="store-buttons-row">
-      <a href="https://apps.apple.com/us/app/chkela/id6738397728" target="_blank" rel="noopener" class="store-white-pill">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.64-.78 1.08-1.86.96-2.94-.93.04-2.06.62-2.72 1.4-.58.68-1.1 1.79-.96 2.84 1.04.08 2.08-.52 2.72-1.3z"/></svg>
-        <span>App Store</span>
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=com.chkela.v1" target="_blank" rel="noopener" class="store-white-pill">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>
-        <span>Google Play</span>
-      </a>
-    </div>
-
-    <button class="claim-gift-pill" onclick="openModal('giftModal')">
-      <div class="cg-badge">CG</div>
-      <div class="cg-text">
-        <strong>Claim your gift</strong>
-        <span>Enter your code &amp; phone</span>
-      </div>
-      <span class="cg-arrow">→</span>
-    </button>
-  </section>
-
-  <!-- ==========================================================================
-       FOOTER (Exact match to 01:50 - 01:54)
-       ========================================================================== -->
-  <footer class="chkela-footer">
-    <div class="footer-left-col">
-      <span class="footer-logo">Chkela.</span>
+  <footer class="site-footer" id="mainFooter">
+    <div class="footer-brand-col">
+      <div class="footer-wordmark">Chkela<span>.</span></div>
       <p>Smarter matric prep for Ethiopian students.</p>
     </div>
 
-    <div class="footer-right-links">
-      <a href="#terms" onclick="openModal('aboutModal'); return false;">Terms and Conditions</a>
-      <a href="#privacy" onclick="openModal('aboutModal'); return false;">Privacy Policy</a>
+    <div class="footer-links-row">
+      <a href="#/terms" onclick="navigateAbout(event)">Terms and Conditions</a>
+      <a href="#/privacy" onclick="navigateAbout(event)">Privacy Policy</a>
       <a href="tel:+251947819388">+251947819388</a>
       <a href="mailto:contact@chkela.com">contact@chkela.com</a>
     </div>
   </footer>
 
   <!-- ==========================================================================
-       MODAL 1: LOG IN / REGISTER (Ethiopian +251 Auth)
+       VIEW 3: BLACK SHIMMER TRANSITION & FULL-SCREEN LOGIN (04:28 - 05:02)
        ========================================================================== -->
-  <div class="modal-overlay" id="loginModal">
-    <div class="modal-glass-box">
-      <button class="modal-close-x" onclick="closeModal('loginModal')">✕</button>
-      <h3 class="modal-title">Chkela.</h3>
-      <p class="modal-subtitle">Log in with your Ethiopian phone number (+251) or student email to sync your matric progress.</p>
-
-      <form onsubmit="handleAuthLogin(event)">
-        <div class="field-block">
-          <label>Phone Number (+251) or Email</label>
-          <input type="text" id="authPhoneInput" placeholder="+251 947 819 388" required />
-        </div>
-        <div class="field-block">
-          <label>Password</label>
-          <input type="password" id="authPassInput" placeholder="••••••••" required />
-        </div>
-        <button type="submit" class="primary-action-btn">Log in to Chkela</button>
-      </form>
-
-      <button class="primary-action-btn" style="background:rgba(255,255,255,0.08);margin-top:10px;" onclick="closeModal('loginModal'); openDrillModal('Physics');">
-        Launch Natural Sciences 5-Question NEAEA Drill →
-      </button>
-    </div>
+  <div class="login-loading-screen" id="loginLoadingScreen">
+    <div class="shimmer-bar"></div>
   </div>
 
-  <!-- ==========================================================================
-       MODAL 2: CLAIM YOUR GIFT (CG Code + Phone)
-       ========================================================================== -->
-  <div class="modal-overlay" id="giftModal">
-    <div class="modal-glass-box">
-      <button class="modal-close-x" onclick="closeModal('giftModal')">✕</button>
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
-        <div class="cg-badge">CG</div>
-        <h3 class="modal-title" style="margin:0;">Claim your gift</h3>
-      </div>
-      <p class="modal-subtitle">Enter your Chkela gift code and Ethiopian phone number to unlock full NEAEA past-paper packs.</p>
-
-      <form onsubmit="handleGiftClaim(event)">
-        <div class="field-block">
-          <label>Gift Code</label>
-          <input type="text" id="giftCodeVal" placeholder="e.g. CHKELA2026" required />
-        </div>
-        <div class="field-block">
-          <label>Phone Number (+251)</label>
-          <input type="tel" id="giftPhoneVal" placeholder="+251 9XX XXX XXX" required />
-        </div>
-        <button type="submit" class="primary-action-btn">Redeem Gift →</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       MODAL 3: INTERACTIVE 5-QUESTION NEAEA DRILL (Natural Sciences by Gosa)
-       ========================================================================== -->
-  <div class="modal-overlay" id="drillModal">
-    <div class="modal-glass-box wide-modal">
-      <button class="modal-close-x" onclick="closeModal('drillModal')">✕</button>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
-        <span class="focus-pill-badge" id="drillBadge">NEAEA PAST-PAPER DRILL · NATURAL SCIENCES</span>
-        <span style="font-size:0.78rem;color:rgba(255,255,255,0.55);">Curated &amp; Solved by <strong>Gosa Negeso Geleto</strong></span>
-      </div>
-
-      <h3 class="modal-title" id="drillTopicTitle" style="font-size:1.25rem;">Newton's Laws &amp; Equilibrium</h3>
-      <p id="drillStem" style="font-size:1rem;line-height:1.6;margin:14px 0 20px;color:#f1f5f9;"></p>
-
-      <div id="drillOptionsBox"></div>
-
-      <div class="solution-callout" id="drillSolutionBox"></div>
-
-      <div style="display:flex;justify-content:space-between;margin-top:20px;gap:12px;">
-        <button class="nav-login-btn" onclick="prevDrillQ()">← Previous</button>
-        <button class="nav-login-btn" style="background:#5b6cf9;" onclick="nextDrillQ()">Next NEAEA Question →</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       MODAL 4: ABOUT CHKELA & CONTRIBUTORS (Lolearn Solutions)
-       ========================================================================== -->
-  <div class="modal-overlay" id="aboutModal">
-    <div class="modal-glass-box wide-modal">
-      <button class="modal-close-x" onclick="closeModal('aboutModal')">✕</button>
-      <h3 class="modal-title">About Chkela.</h3>
-      <p class="modal-subtitle">
-        Built by <strong>Lolearn Solutions</strong> (Golagol – Bole, Addis Ababa) to help 73,000+ Ethiopian high school students master the Grade 9–12 NEAEA matriculation examination.
+  <section class="login-page-view" id="loginPageView">
+    <div class="login-box-top">
+      <div class="login-title-logo" onclick="exitLoginToHome()" title="Back to Chkela Home">Chkela</div>
+      <p class="login-sub-text">
+        Grade 9–12 study materials are here. New or returning students, enter your phone to continue.
       </p>
 
-      <div class="contrib-grid">
-        <div class="contrib-card lead-highlight">
-          <span style="font-size:0.7rem;font-weight:800;color:#a5b4fc;letter-spacing:0.08em;">CO-FOUNDER · FRONTEND &amp; NATURAL SCIENCES LEAD</span>
-          <h4 style="font-size:1.1rem;margin:6px 0;">Gosa Negeso Geleto</h4>
-          <p style="font-size:0.84rem;color:rgba(255,255,255,0.72);line-height:1.55;">
-            Spearheaded frontend web/mobile interface development and authored Chkela's Grade 9–12 <strong>Natural Sciences assessment bank and step-by-step solutions</strong> (Physics, Chemistry, Biology, and Mathematics). Ranked #2 nationally on the Ethiopian Secondary School Leaving Examination (590/600).
-          </p>
-        </div>
-
-        <div class="contrib-card">
-          <span style="font-size:0.7rem;font-weight:800;color:#6ee7b7;letter-spacing:0.08em;">MOBILE &amp; RELEASE ENGINEERING</span>
-          <h4 style="font-size:1.1rem;margin:6px 0;">Tefera Bereket</h4>
-          <p style="font-size:0.84rem;color:rgba(255,255,255,0.72);line-height:1.55;">
-            Cross-platform mobile engineering, iOS App Store release (<code>id6738397728</code>), and Google Play deployment (<code>com.chkela.v1</code>).
-          </p>
-        </div>
-
-        <div class="contrib-card">
-          <span style="font-size:0.7rem;font-weight:800;color:#93c5fd;letter-spacing:0.08em;">BACKEND &amp; AI TUTOR SYSTEMS</span>
-          <h4 style="font-size:1.1rem;margin:6px 0;">Samuel Wondimagegnehu Beshah</h4>
-          <p style="font-size:0.84rem;color:rgba(255,255,255,0.72);line-height:1.55;">
-            Python, FastAPI, and LangGraph orchestration powering the in-app tutor and topic weakness diagnostics.
-          </p>
-        </div>
-
-        <div class="contrib-card">
-          <span style="font-size:0.7rem;font-weight:800;color:#fcd34d;letter-spacing:0.08em;">CO-FOUNDER &amp; PEER STUDY ARCHITECTURE</span>
-          <h4 style="font-size:1.1rem;margin:6px 0;">Kalid Beshir Hasen</h4>
-          <p style="font-size:0.84rem;color:rgba(255,255,255,0.72);line-height:1.55;">
-            Co-founded peer study rooms, national school partnerships, and student accountability systems.
-          </p>
-        </div>
+      <label class="login-phone-label" for="chkelaPhoneInput">PHONE</label>
+      <div class="login-phone-field">
+        <span class="country-prefix">+251</span>
+        <input
+          type="tel"
+          id="chkelaPhoneInput"
+          placeholder="9XX or 7XX XXX XXX"
+          maxlength="12"
+          oninput="validateLoginState()"
+        />
       </div>
+
+      <label class="login-terms-row">
+        <input type="checkbox" id="chkelaTermsCheck" checked onchange="validateLoginState()" />
+        <span>I agree to the <a href="#/terms" onclick="exitLoginToAbout(event)">Terms of Use</a> and <a href="#/privacy" onclick="exitLoginToAbout(event)">Privacy Policy.</a></span>
+      </label>
+    </div>
+
+    <div class="login-bottom-bar">
+      <button class="login-continue-btn" id="loginContinueBtn" onclick="handleLoginContinue()">
+        Continue
+      </button>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CLAIM YOUR GIFT MODAL
+       ========================================================================== -->
+  <div class="gift-modal-backdrop" id="giftModalBackdrop">
+    <div class="gift-modal-card">
+      <button class="gift-close-btn" onclick="closeGiftModal()">✕</button>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+        <div class="cg-icon-box">CG</div>
+        <h3 style="font-family:var(--font-display);font-size:1.2rem;">Claim your gift</h3>
+      </div>
+      <p style="font-size:0.88rem;color:var(--text-secondary);margin-bottom:18px;line-height:1.5;">
+        Enter your Chkela gift code and Ethiopian phone number (+251) to activate your study pack.
+      </p>
+      <form onsubmit="submitGiftForm(event)">
+        <div class="gift-input-group">
+          <label>GIFT CODE</label>
+          <input type="text" placeholder="Enter your code" required />
+        </div>
+        <div class="gift-input-group">
+          <label>PHONE (+251)</label>
+          <input type="tel" placeholder="9XX or 7XX XXX XXX" required />
+        </div>
+        <button type="submit" class="gift-submit-btn">Continue</button>
+      </form>
     </div>
   </div>
 
   <!-- ==========================================================================
-       JAVASCRIPT: 3D ORBITAL RINGS CANVAS + NATURAL SCIENCES DRILL ENGINE
+       JAVASCRIPT: 3D RIBBON SWIRL CANVAS & EXACT ROUTING
        ========================================================================== -->
   <script>
-    /* 1. Animated 3D Glowing Orbital Rings & Particles (Matches Hero Video 00:00-00:22) */
-    (function initOrbitalCanvas() {
-      const canvas = document.getElementById('orbitalCanvas');
+    /* 1. 3D Glossy Orbital Ribbon Swirl Canvas (Matches 00:00 - 00:56 Hero Background) */
+    (function initHeroRibbonCanvas() {
+      const canvas = document.getElementById('heroVortexCanvas');
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      let width, height, particles = [], tick = 0;
+      let w, h, t = 0;
 
       function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
       }
       window.addEventListener('resize', resize);
       resize();
 
-      for (let i = 0; i < 42; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          r: Math.random() * 2.2 + 0.6,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          alpha: Math.random() * 0.65 + 0.2
-        });
-      }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        t += 0.0035;
 
-      function drawFrame() {
-        ctx.clearRect(0, 0, width, height);
-        tick += 0.0045;
+        const cx = w * 0.54;
+        const cy = h * 0.5;
 
-        const cx = width * 0.5;
-        const cy = height * 0.5;
+        // Ambient deep indigo core glow
+        const coreGrad = ctx.createRadialGradient(cx, cy, 20, cx, cy, Math.max(w, h) * 0.55);
+        coreGrad.addColorStop(0, 'rgba(67, 56, 202, 0.24)');
+        coreGrad.addColorStop(0.45, 'rgba(30, 27, 75, 0.14)');
+        coreGrad.addColorStop(1, 'rgba(4, 5, 11, 0)');
+        ctx.fillStyle = coreGrad;
+        ctx.fillRect(0, 0, w, h);
 
-        // Draw sweeping 3D tilted orbital light arcs
-        const orbits = [
-          { rx: width * 0.42, ry: height * 0.22, rot: -0.32 + Math.sin(tick) * 0.04, color: 'rgba(99, 102, 241, 0.28)', lw: 2.2 },
-          { rx: width * 0.34, ry: height * 0.17, rot: -0.24 + Math.cos(tick) * 0.05, color: 'rgba(129, 140, 248, 0.36)', lw: 1.6 },
-          { rx: width * 0.52, ry: height * 0.28, rot: -0.38, color: 'rgba(79, 70, 229, 0.18)', lw: 2.8 }
+        // Sweeping 3D glossy orbital ribbons with bright specular highlights
+        const ribbons = [
+          { rx: w * 0.44, ry: h * 0.34, rot: -0.36 + Math.sin(t) * 0.03, width: 28, alpha: 0.22, specAngle: 1.85 },
+          { rx: w * 0.35, ry: h * 0.26, rot: -0.25 + Math.cos(t * 0.9) * 0.03, width: 18, alpha: 0.3, specAngle: 3.9 },
+          { rx: w * 0.55, ry: h * 0.42, rot: -0.42 + Math.sin(t * 0.7) * 0.02, width: 38, alpha: 0.14, specAngle: 0.7 }
         ];
 
-        orbits.forEach((o, idx) => {
+        ribbons.forEach((r, i) => {
           ctx.save();
           ctx.translate(cx, cy);
-          ctx.rotate(o.rot);
+          ctx.rotate(r.rot);
+
+          // Outer soft ribbon body
           ctx.beginPath();
-          ctx.ellipse(0, 0, o.rx, o.ry, 0, 0, Math.PI * 2);
-          ctx.strokeStyle = o.color;
-          ctx.lineWidth = o.lw;
-          ctx.shadowColor = '#6366f1';
-          ctx.shadowBlur = 18;
+          ctx.ellipse(0, 0, r.rx, r.ry, 0, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(99, 102, 241, ${r.alpha})`;
+          ctx.lineWidth = r.width;
+          ctx.shadowColor = '#4f46e5';
+          ctx.shadowBlur = 34;
           ctx.stroke();
 
-          // Orbiting bright photon node along the ring
-          const angle = tick * (1.8 + idx * 0.5) + idx * 2;
-          const px = Math.cos(angle) * o.rx;
-          const py = Math.sin(angle) * o.ry;
+          // Inner crisp bright rim
           ctx.beginPath();
-          ctx.arc(px, py, 3.2, 0, Math.PI * 2);
-          ctx.fillStyle = '#e0e7ff';
-          ctx.shadowColor = '#818cf8';
+          ctx.ellipse(0, 0, r.rx, r.ry, 0, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(199, 210, 254, ${r.alpha * 1.65})`;
+          ctx.lineWidth = 2.2;
+          ctx.shadowColor = '#ffffff';
           ctx.shadowBlur = 16;
-          ctx.fill();
+          ctx.stroke();
+
+          // Specular white-lavender streak along the curve (matches 00:33 & 00:53)
+          const startA = r.specAngle + Math.sin(t + i) * 0.25;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, r.rx, r.ry, 0, startA, startA + 0.55);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.78)';
+          ctx.lineWidth = 3.6;
+          ctx.lineCap = 'round';
+          ctx.shadowColor = '#e0e7ff';
+          ctx.shadowBlur = 24;
+          ctx.stroke();
+
           ctx.restore();
         });
 
-        // Floating ambient bokeh particles
-        particles.forEach(p => {
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.x < 0) p.x = width;
-          if (p.x > width) p.x = 0;
-          if (p.y < 0) p.y = height;
-          if (p.y > height) p.y = 0;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(165, 180, 252, ${p.alpha})`;
-          ctx.fill();
-        });
-
-        requestAnimationFrame(drawFrame);
+        requestAnimationFrame(draw);
       }
-      drawFrame();
+      draw();
     })();
 
-    /* 2. Navigation & Modal Helpers */
-    function setActiveNav(tab) {
-      ['home', 'features', 'about'].forEach(id => {
-        const el = document.getElementById('nav-' + id);
-        if (el) el.classList.toggle('active', id === tab);
+    /* 2. Page Navigation State Machine (Home / Features / About / Login) */
+    const homeView = document.getElementById('homePageView');
+    const aboutView = document.getElementById('aboutPageView');
+    const loginView = document.getElementById('loginPageView');
+    const loadingScreen = document.getElementById('loginLoadingScreen');
+    const mainNavbar = document.getElementById('mainNavbar');
+    const mainFooter = document.getElementById('mainFooter');
+
+    function setActivePill(activeId) {
+      ['navBtnHome', 'navBtnFeatures', 'navBtnAbout'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.classList.toggle('active', id === activeId);
       });
     }
 
-    function openModal(id) {
-      document.getElementById(id).classList.add('open');
+    function navigateHome(e) {
+      if (e) e.preventDefault();
+      loginView.style.display = 'none';
+      aboutView.style.display = 'none';
+      homeView.style.display = 'block';
+      mainNavbar.style.display = 'flex';
+      mainFooter.style.display = 'flex';
+      setActivePill('navBtnHome');
+      history.pushState({ page: 'home' }, '', '#/');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('open');
+    function navigateFeatures(e) {
+      if (e) e.preventDefault();
+      loginView.style.display = 'none';
+      aboutView.style.display = 'none';
+      homeView.style.display = 'block';
+      mainNavbar.style.display = 'flex';
+      mainFooter.style.display = 'flex';
+      setActivePill('navBtnFeatures');
+      history.pushState({ page: 'features' }, '', '#features');
+      const featEl = document.getElementById('features');
+      if (featEl) featEl.scrollIntoView({ behavior: 'smooth' });
     }
 
-    /* 3. Natural Sciences 5-Question NEAEA Past-Paper Drill (Written by Gosa Negeso Geleto) */
-    const NEAEA_DRILL_QUESTIONS = [
-      {
-        subject: "Physics · NEAEA Past Paper",
-        topic: "Newton's Second Law & Inclined Pulley Systems",
-        stem: "Q1/5: A 4.0 kg block rests on a rough 30° incline (μs = 0.65). What is the magnitude of the static frictional force acting on the block? (Use g = 10 m/s²)",
-        options: [
-          "A) 22.5 N",
-          "B) 20.0 N",
-          "C) 34.6 N",
-          "D) 17.3 N"
-        ],
-        correct: 1,
-        solution: "Correct Answer: B (20.0 N). The downward pull parallel to the incline is mg sin(30°) = 4 × 10 × 0.5 = 20.0 N. Maximum possible static friction is μs mg cos(30°) = 0.65 × 40 × 0.866 = 22.5 N. Since 20.0 N < 22.5 N, the block remains stationary and static friction equals the exact driving force: 20.0 N."
-      },
-      {
-        subject: "Physics · NEAEA Past Paper",
-        topic: "Work-Energy Theorem & Power",
-        stem: "Q2/5: A 10 kg crate is pulled up a rough 37° incline (μk = 0.25) at a constant speed of 2.5 m/s. What power is delivered by the pulling rope? (sin 37° = 0.6, cos 37° = 0.8, g = 10 m/s²)",
-        options: [
-          "A) 150 W",
-          "B) 200 W",
-          "C) 250 W",
-          "D) 80 W"
-        ],
-        correct: 1,
-        solution: "Correct Answer: B (200 W). Constant velocity means net force = 0, so T = mg sin(37°) + μk mg cos(37°) = 60 N + 20 N = 80 N. Power P = T × v = 80 N × 2.5 m/s = 200 W."
-      },
-      {
-        subject: "Chemistry · NEAEA Past Paper",
-        topic: "Electrochemistry & Gibbs Free Energy",
-        stem: "Q3/5: In a Zn | Zn²⁺(1M) || Cu²⁺(1M) | Cu galvanic cell, E°cell = +1.10 V. What is the standard Gibbs free energy change ΔG° at 298 K? (F = 96,500 C/mol)",
-        options: [
-          "A) -106.15 kJ/mol",
-          "B) -212.30 kJ/mol",
-          "C) +212.30 kJ/mol",
-          "D) -96.50 kJ/mol"
-        ],
-        correct: 1,
-        solution: "Correct Answer: B (-212.30 kJ/mol). With n = 2 moles of electrons transferred, ΔG° = -nFE° = -(2)(96,500 C/mol)(1.10 V) = -212,300 J/mol = -212.30 kJ/mol."
-      },
-      {
-        subject: "Biology · NEAEA Past Paper",
-        topic: "Molecular Genetics & Chargaff's Rule",
-        stem: "Q4/5: A double-stranded DNA molecule contains 1,200 base pairs, and 28% of its nitrogenous bases are Adenine (A). How many Cytosine (C) nucleotides are present?",
-        options: [
-          "A) 528 Cytosine nucleotides",
-          "B) 264 Cytosine nucleotides",
-          "C) 672 Cytosine nucleotides",
-          "D) 336 Cytosine nucleotides"
-        ],
-        correct: 0,
-        solution: "Correct Answer: A (528). 1,200 base pairs = 2,400 total bases. Since %A = %T = 28%, G + C = 44%, so %C = 22%. Total Cytosine = 0.22 × 2,400 = 528."
-      },
-      {
-        subject: "Mathematics · NEAEA Past Paper",
-        topic: "Calculus & Absolute Extrema",
-        stem: "Q5/5: For f(x) = x³ - 6x² + 9x + 2 on the closed interval [0, 4], what is the sum of the absolute maximum and absolute minimum values?",
-        options: [
-          "A) 8",
-          "B) 6",
-          "C) 10",
-          "D) 4"
-        ],
-        correct: 0,
-        solution: "Correct Answer: A (8). Critical points from f'(x) = 3(x-1)(x-3) = 0 are x = 1 and x = 3. Evaluating f(0)=2, f(1)=6, f(3)=2, f(4)=6 gives Max = 6 and Min = 2. Sum = 6 + 2 = 8."
+    function navigateAbout(e) {
+      if (e) e.preventDefault();
+      loginView.style.display = 'none';
+      homeView.style.display = 'none';
+      aboutView.style.display = 'block';
+      mainNavbar.style.display = 'flex';
+      mainFooter.style.display = 'flex';
+      setActivePill('navBtnAbout');
+      history.pushState({ page: 'about' }, '', '#/about');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* Exact Black Shimmer Loading -> Full-Screen Login Transition (04:28 - 05:02) */
+    function triggerLoginTransition() {
+      loadingScreen.style.display = 'flex';
+      history.pushState({ page: 'login' }, '', '#/app/login');
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+        homeView.style.display = 'none';
+        aboutView.style.display = 'none';
+        mainNavbar.style.display = 'none';
+        mainFooter.style.display = 'none';
+        loginView.style.display = 'flex';
+        const input = document.getElementById('chkelaPhoneInput');
+        if (input) input.focus();
+      }, 620);
+    }
+
+    function exitLoginToHome() {
+      navigateHome();
+    }
+
+    function exitLoginToAbout(e) {
+      if (e) e.preventDefault();
+      navigateAbout();
+    }
+
+    function validateLoginState() {
+      const phone = document.getElementById('chkelaPhoneInput').value.replace(/\s+/g, '');
+      const checked = document.getElementById('chkelaTermsCheck').checked;
+      const btn = document.getElementById('loginContinueBtn');
+      const validEthPhone = /^[79]\d{8}$/.test(phone) || /^0[79]\d{8}$/.test(phone);
+      btn.classList.toggle('ready', validEthPhone && checked);
+    }
+
+    function handleLoginContinue() {
+      const phoneInput = document.getElementById('chkelaPhoneInput');
+      const raw = phoneInput.value.replace(/\s+/g, '');
+      const checked = document.getElementById('chkelaTermsCheck').checked;
+      if (!checked) return;
+      if (!raw) {
+        phoneInput.focus();
+        return;
       }
-    ];
-
-    let currentDrillIdx = 0;
-
-    function openDrillModal(preferredSubject) {
-      if (preferredSubject === 'Mathematics') currentDrillIdx = 4;
-      else if (preferredSubject === 'Biology') currentDrillIdx = 3;
-      else currentDrillIdx = 0;
-      renderDrillQuestion();
-      openModal('drillModal');
+      const btn = document.getElementById('loginContinueBtn');
+      btn.textContent = 'Sending verification code...';
+      setTimeout(() => {
+        btn.textContent = 'Continue';
+        alert('Verification code sent to +251 ' + raw);
+      }, 700);
     }
 
-    function renderDrillQuestion() {
-      const q = NEAEA_DRILL_QUESTIONS[currentDrillIdx];
-      document.getElementById('drillBadge').textContent = q.subject.toUpperCase();
-      document.getElementById('drillTopicTitle').textContent = q.topic;
-      document.getElementById('drillStem').textContent = q.stem;
+    /* Support Browser Back/Forward Buttons cleanly */
+    window.addEventListener('popstate', () => {
+      const hash = window.location.hash;
+      if (hash.includes('login')) {
+        homeView.style.display = 'none';
+        aboutView.style.display = 'none';
+        mainNavbar.style.display = 'none';
+        mainFooter.style.display = 'none';
+        loginView.style.display = 'flex';
+      } else if (hash.includes('about')) {
+        navigateAbout();
+      } else if (hash.includes('features')) {
+        navigateFeatures();
+      } else {
+        navigateHome();
+      }
+    });
 
-      const box = document.getElementById('drillOptionsBox');
-      box.innerHTML = '';
-      const solBox = document.getElementById('drillSolutionBox');
-      solBox.style.display = 'none';
-
-      q.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'drill-option-btn';
-        btn.textContent = opt;
-        btn.onclick = () => {
-          const allBtns = box.querySelectorAll('.drill-option-btn');
-          allBtns.forEach((b, i) => {
-            b.disabled = true;
-            if (i === q.correct) b.classList.add('correct');
-          });
-          if (idx !== q.correct) btn.classList.add('wrong');
-          solBox.textContent = q.solution;
-          solBox.style.display = 'block';
-        };
-        box.appendChild(btn);
-      });
+    /* Gift Modal Controls */
+    function openGiftModal() {
+      document.getElementById('giftModalBackdrop').classList.add('show');
     }
 
-    function nextDrillQ() {
-      currentDrillIdx = (currentDrillIdx + 1) % NEAEA_DRILL_QUESTIONS.length;
-      renderDrillQuestion();
+    function closeGiftModal() {
+      document.getElementById('giftModalBackdrop').classList.remove('show');
     }
 
-    function prevDrillQ() {
-      currentDrillIdx = (currentDrillIdx - 1 + NEAEA_DRILL_QUESTIONS.length) % NEAEA_DRILL_QUESTIONS.length;
-      renderDrillQuestion();
-    }
-
-    function handleAuthLogin(e) {
+    function submitGiftForm(e) {
       e.preventDefault();
-      const val = document.getElementById('authPhoneInput').value.trim();
-      closeModal('loginModal');
-      document.getElementById('topLoginBtn').textContent = 'Student (' + val.slice(-4) + ')';
-      openDrillModal('Physics');
-    }
-
-    function handleGiftClaim(e) {
-      e.preventDefault();
-      const code = document.getElementById('giftCodeVal').value.trim().toUpperCase();
-      closeModal('giftModal');
-      openDrillModal('Physics');
+      closeGiftModal();
+      triggerLoginTransition();
     }
   </script>
 </body>
