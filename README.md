@@ -43,7 +43,7 @@ This repository contains the standalone responsive Web Client, Authentication Po
 
 ```bash
 # Clone the repository
-git clone [https://github.com/](https://github.com/)<your-username>/chkela-web.git
+git clone [https://github.com/](https://github.com/)<Gosa-n-geleto>/chkela-web.git
 cd chkela-web
 
 # Serve locally using Python or Node
